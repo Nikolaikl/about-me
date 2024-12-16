@@ -6,8 +6,11 @@
   --aqua: #97ebdb;
   --white: #daf8e3;
   --font-size: 1.3rem;
-  --mono: "Oxygen mono", monospace;
-  --sans: Oxygen, sans-serif;
+  --font-family: Inter, sans-serif;
+  --font-feature-settings: 'liga' 1, 'calt' 1; 
+}
+@supports (font-variation-settings: normal) {
+  :root { font-family: InterVariable, sans-serif; }
 }
 
 html {
