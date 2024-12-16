@@ -1,10 +1,12 @@
 :root {
   --black: #171321;
+  --darkgrey: #4a4a4a;
   --darkblue: #005582;
   --darkorange: #aa5656;
   --warmorange: #d58b82;
   --aqua: #97ebdb;
   --white: #daf8e3;
+  --soft-lavender: #e8d3e0;
   --font-size: 1.3rem;
   --font-family: Inter, sans-serif;
   --sans: "Inter", sans-serif;
@@ -48,10 +50,27 @@ a {
 }
 
 #intro {
-  padding-bottom: 10rem;
+  padding: 4rem 1rem 10rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-#intro div p {
+.section-lavender {
+  background-color: var(--soft-lavender);
+  color: var(--darkgrey);
+}
+
+.gradient {
+  background: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
+  height: 2px;
+}
+
+.section-warmorange a #intro div p {
   font-size: 1rem;
 }
 
