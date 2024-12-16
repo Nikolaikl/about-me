@@ -144,7 +144,20 @@ nav a img {
   margin: auto;
 }
 
-nav li:nth-last-child(-n+2) a img {
-    height: 80px; 
-    width: 80px;  
+nav li:nth-last-child(-n + 2) a img {
+  height: 80px;
+  width: 80px;
+}
+
+@media (min-width: 850px) {
+  nav {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  nav li:first-child {
+    flex-basis: auto;
+    text-align: left;
+    margin-right: auto;
+  }
 }
