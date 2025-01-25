@@ -36,8 +36,8 @@ html {
 }
 
 body {
-  padding: 1em;
-  margin: 1em;
+  padding: 0.5em;
+  margin: 0;
   font-family: var(--sans);
   background-color: var(--black);
   color: var(--white);
@@ -60,8 +60,7 @@ nav {
   font-family: var(--mono);
   font-size: var(--font-size);
   padding: 1em;
-  min-width: 500px;
-  text-align: justify;
+  text-align: center;
 }
 
 nav:after {
@@ -79,11 +78,11 @@ nav ul {
   padding: 0;
   margin: 0;
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column wrap;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
-  font-size: 1.2rem;
+  gap: 1rem;
+  font-size: 1rem;
 }
 
 nav li {
@@ -156,13 +155,13 @@ nav li:nth-last-child(-n + 2) a img {
 }
 
 .project-card {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   background-color: rgba(23, 19, 33, 0.7);
   border-radius: 8px;
-  padding: 2rem;
-  margin-bottom: 2rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
 }
 
 .project-content h3 {
@@ -254,10 +253,10 @@ nav li:nth-last-child(-n + 2) a img {
 
 /* Contact Section */
 #contact {
-  width: 450px;
+  width: 100%;
   text-align: center;
   margin: 0 auto;
-  padding: 3rem 0;
+  padding: 2rem 1rem;
 }
 
 #contact .linkedin {
@@ -286,6 +285,27 @@ nav li:nth-last-child(-n + 2) a img {
 }
 
 /* Media Queries */
+@media (min-width: 768px) {
+  nav ul {
+    flex-flow: row wrap;
+    gap: 2rem;
+    font-size: 1.2rem;
+  }
+  
+  .project-card {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  #contact {
+    width: 450px;
+    padding: 3rem 0;
+  }
+}
+
 @media (min-width: 850px) {
   nav {
     max-width: 1200px;
