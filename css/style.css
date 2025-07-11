@@ -151,7 +151,7 @@ nav li:nth-last-child(-n + 2) a img {
 .project-grid {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
 }
 
 .project-card {
@@ -206,15 +206,15 @@ nav li:nth-last-child(-n + 2) a img {
 .experience-grid {
   display: grid;
   gap: 2rem;
-  padding: 2rem;
+  padding: 0 1rem;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 0;
 }
 
 .experience-grid article {
   background-color: var(--black);
-  padding: 2rem;
-  border-radius: 8px;
+  padding: 2rem 1rem 1rem -1rem;
+  border-radius: 20px;
 }
 
 .experience-grid h3 {
@@ -307,11 +307,42 @@ nav li:nth-last-child(-n + 2) a img {
 }
 
 @media (max-width: 767px) {
-  nav ul {
-    flex-flow: column wrap;
-    gap: 1rem;
-    font-size: 1rem;
+  nav {
+    padding: 0.5rem;
   }
+
+  nav ul {
+    display: none;
+    flex-flow: column wrap;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    padding: 0.5rem;
+    background-color: var(--black);
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 3rem;
+    z-index: 1000;
+  }
+
+  nav ul.active {
+    display: flex;
+  }
+
+  .burger-menu {
+    display: block;
+    cursor: pointer;
+    padding: 0.5rem;
+  }
+
+  .burger-menu span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--white);
+    margin: 5px 0;
+  }
+}
 
   .project-card {
     display: flex;
