@@ -329,21 +329,6 @@ nav li:nth-last-child(-n + 2) a img {
     display: flex;
   }
 
-  .burger-menu {
-    display: block;
-    cursor: pointer;
-    padding: 0.5rem;
-  }
-
-  .burger-menu span {
-    display: block;
-    width: 25px;
-    height: 3px;
-    background-color: var(--white);
-    margin: 5px 0;
-  }
-}
-
   .project-card {
     display: flex;
     flex-direction: column;
