@@ -11,7 +11,7 @@
   --soft-lavender: #e8d3e0;
 
   /* Typography */
-  --font-size: 1.3rem;
+  --font-size: 1rem;
   --sans: "Inter", sans-serif;
   --mono: "Inter", monospace;
 }
@@ -144,7 +144,9 @@ nav li:nth-last-child(-n + 2) a img {
 #professional-experience h2,
 #about h2 {
   text-align: left;
-  padding: 4rem 0 0 4rem;
+  padding: 4rem 1rem 0 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 /* Projects Section */
@@ -208,7 +210,7 @@ nav li:nth-last-child(-n + 2) a img {
   gap: 2rem;
   padding: 0 1rem;
   max-width: 1200px;
-  margin: 0;
+  margin: 0 auto;
 }
 
 .experience-grid article {
