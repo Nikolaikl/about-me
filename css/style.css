@@ -14,7 +14,6 @@
   --font-size: 1.3rem;
   --sans: "Inter", sans-serif;
   --mono: "Inter", monospace;
-  --font-feature-settings: "liga" 1, "calt" 1;
 }
 
 /* Font Support */
@@ -41,7 +40,7 @@ body {
   font-family: var(--sans);
   background-color: var(--black);
   color: var(--white);
-  font: var(--font-size);
+  font-size: var(--font-size);
 }
 
 /* Typography */
@@ -61,12 +60,6 @@ nav {
   font-size: var(--font-size);
   padding: 1em;
   text-align: center;
-}
-
-nav:after {
-  content: "";
-  display: inline-block;
-  width: 100%;
 }
 
 nav h1 a {
@@ -117,6 +110,17 @@ nav li:nth-last-child(-n + 2) a img {
   width: 80px;
 }
 
+/* Nav Toggle (mobile hamburger) */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+}
+
 /* Intro Section */
 #intro {
   padding: 4rem 1rem 10rem 1rem;
@@ -135,19 +139,15 @@ nav li:nth-last-child(-n + 2) a img {
   display: block;
 }
 
-#intro h2 {
-  font-size: 4rem;
-  font-weight: normal;
-}
-
-/* Projects Section */
+/* Section Headings */
 #projects h2,
-#professional-experience,
+#professional-experience h2,
 #about h2 {
   text-align: left;
   padding: 4rem 0 0 4rem;
 }
 
+/* Projects Section */
 .project-grid {
   max-width: 1200px;
   margin: 0 auto;
@@ -213,7 +213,7 @@ nav li:nth-last-child(-n + 2) a img {
 
 .experience-grid article {
   background-color: var(--black);
-  padding: 2rem 1rem 1rem -1rem;
+  padding: 2rem 1rem 1rem 1rem;
   border-radius: 20px;
 }
 
@@ -291,7 +291,7 @@ nav li:nth-last-child(-n + 2) a img {
     gap: 2rem;
     font-size: 1.2rem;
   }
-  
+
   .project-card {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -299,7 +299,7 @@ nav li:nth-last-child(-n + 2) a img {
     padding: 2rem;
     margin-bottom: 2rem;
   }
-  
+
   #contact {
     width: 450px;
     padding: 3rem 0;
@@ -309,6 +309,11 @@ nav li:nth-last-child(-n + 2) a img {
 @media (max-width: 767px) {
   nav {
     padding: 0.5rem;
+    position: relative;
+  }
+
+  .nav-toggle {
+    display: block;
   }
 
   nav ul {

@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Nikolai Klassen - Data Scientist and Machine Learning Engineer">
+  <meta name="description" content="Nikolai Klassen - Machine Learning Engineer and Tech Lead">
   <title>Nikolai Klassen | About Me</title>
   <link rel="preconnect" href="https://rsms.me/" />
   <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
@@ -14,6 +14,7 @@
 <body>
   <header>
     <nav aria-label="Main navigation">
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
       <ul>
         <li>
           <h1><a href="index.html">Nikolai Klassen</a></h1>
@@ -21,7 +22,7 @@
         <li><a href="#projects">Projects</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><a href="./assets/CV_2025_EN-2.pdf"> CV </a></li>
+        <li><a href="./assets/CV_2025_EN-2.pdf">CV</a></li>
         <li>
           <a href="https://www.github.com/nikolaikl" target="_blank" rel="noopener noreferrer"
             aria-label="GitHub Profile">
@@ -36,19 +37,27 @@
         </li>
       </ul>
     </nav>
+    <script>
+      document.querySelector('.nav-toggle').addEventListener('click', function() {
+        const ul = document.querySelector('nav ul');
+        const expanded = this.getAttribute('aria-expanded') === 'true';
+        ul.classList.toggle('active');
+        this.setAttribute('aria-expanded', !expanded);
+      });
+    </script>
   </header>
 
   <main>
     <section id="intro">
       <div class="intro-content">
         <p class="name">Hi my name is <span>Nikolai Klassen</span></p>
-        <p>I am currently working as a tech lead and machine learning engineer at
+        <p>I am currently working as a Machine Learning Engineer / Tech Lead at
           <a href="https://www.deutsche-rentenversicherung.de/DRV/DE/Home/home_node.html" target="_blank"
-            rel="noopener noreferrer">DRV Bund</a>,
-          providing LLM powered applications, like RAG and normal chatbots to 53 milion insured individuals.
-          At the DRV Bund, I focus on humanistic alligned human computer interaction embedding AI with a
-          human in the loop (iff possible). Furthermore, I consult other projects and teach fellow colleagues best practice
-            as well as help other engineers in their carreer.
+            rel="noopener noreferrer">Deutsche Rentenversicherung Bund</a>,
+          leading the development of a multilingual generative AI platform on AWS, enabling LLM workflows across multiple teams
+          aimed at serving 20,000 user requests per hour.
+          I focus on humanistic aligned human-computer interaction, embedding AI with a
+          human in the loop. Furthermore, I consult other projects and mentor fellow colleagues in best practices.
         </p>
         <p>
           Before that, I worked at <a href="https://www.billie.io">Billie</a> as a Data/ML Engineer, where I
@@ -62,19 +71,20 @@
       <h2>Professional Experience</h2>
       <div class="experience-grid">
         <article>
-          <h3>Data Scientist / Machine Learning Engineer</h3>
-          <p class="duration">October 2024 - Currently</p>
+          <h3>Machine Learning Engineer / Tech Lead at Deutsche Rentenversicherung Bund</h3>
+          <p class="duration">November 2024 - Present</p>
           <ul>
-            <li> Lead the development of a full stack RAG Application running on AWS that is used for external and internal clients. </li>
-            <li> Deployed a multilingual generative AI platform on AWS, enabling the devel opment of LLM workflows across multiple teams and enhancing cross-functional collaboration aimed at serving 20.000 user requests an hour.</li>
-            <li> Designed and implemented scalable Retrieval-Augmented Generation (RAG) pipelines, optimizing the processing and retrieval of insights from large-scale text datasets, significantly improving and automating data processing pipelines for unstructured data.</li>
-            <li> Collaborated with Architects to shape the generative AI setup, integrating cloud technologies into both AWS and on-premise solutions, ensuring a seamless hybrid infrastructure and integration.</li>
-            <li> Led the usage of Request for Comments (RFCs) and Architectural Decision Records (ADRs) for Generative AI projects, driving the adoption of innovative practices in software development processes. </li>
-            <li> Mentored and guided junior data scientists in both LLM and classical ML projects, fostering their technical skills and professional growth through structured feedback and collaborative problem solving, leading to improved project results and greater confidence.</li>
+            <li>Lead the development of a multilingual generative AI platform covering the frontend (Typescript) and backend (Python) on AWS, enabling the development of LLM workflows across multiple teams and enhancing cross-functional collaboration aimed at serving 20,000 user requests per hour.</li>
+            <li>Set up monitoring and LLM platform tools to monitor and evaluate LLM-based applications for the accuracy and reliability of our service.</li>
+            <li>Developed and deployed ETL pipelines that transform unstructured data into structured data for optimized LLM ingestion, enhancing the work of 4 people.</li>
+            <li>Designed and implemented scalable Retrieval-Augmented Generation (RAG) pipelines, optimizing the processing and retrieval of insights from large-scale text datasets and significantly improving and automating data processing pipelines for unstructured data.</li>
+            <li>Collaborated with architects to shape the generative AI setup, integrating cloud technologies into both AWS and on-premise solutions, ensuring a seamless hybrid infrastructure and integration.</li>
+            <li>Led the usage of Request for Comments (RFCs) and Architectural Decision Records (ADRs) for Generative AI projects, driving the adoption of innovative practices in software development processes.</li>
+            <li>Mentored and guided junior data scientists in both LLM and classical ML projects, fostering their technical skills and professional growth through structured feedback and collaborative problem solving, leading to improved project results and greater confidence.</li>
           </ul>
         </article>
         <article>
-          <h3>Data/ML Engineer at Billie.io</h3>
+          <h3>Data Engineer / Data Scientist at Billie.io</h3>
           <p class="duration">October 2022 - October 2024</p>
           <ul>
             <li>Developed and maintained backend services in accordance with MLOps best practices, achieving 99% availability for 20,000 daily orders.</li>
@@ -104,20 +114,88 @@
       <div class="project-grid">
         <article class="project-card">
           <div class="project-content">
-            <h3>My own static website</h3>
+            <h3><a href="https://github.com/Nikolaikl/digibro-monorepo" target="_blank" rel="noopener noreferrer">RenaTe - AI Chatbot Platform</a></h3>
+            <p class="project-description">
+              Built from scratch as lead developer: a full-stack AI chatbot platform for Deutsche Rentenversicherung
+              powered by AWS Bedrock agents. Architected the entire system including an Angular frontend with Amplify auth,
+              a Python Lambda orchestrator backend, multi-turn conversation handling, guardrails, prompt caching,
+              and a modular CDK infrastructure. Also set up monitoring, CI/CD, documentation with MkDocs,
+              and a local development server with mocked AWS services.
+            </p>
+            <div class="tech-stack">
+              <h4>Tech Stack</h4>
+              <ul>
+                <li>Python</li>
+                <li>Angular</li>
+                <li>TypeScript</li>
+                <li>AWS CDK</li>
+                <li>AWS Bedrock</li>
+                <li>Lambda</li>
+                <li>Cognito</li>
+                <li>CloudFront</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+        <article class="project-card">
+          <div class="project-content">
+            <h3><a href="https://github.com/nikolaikl/digibro-etl" target="_blank" rel="noopener noreferrer">DIGIBRO ETL Pipeline</a></h3>
+            <p class="project-description">
+              A Python-based ETL pipeline for scraping and processing brochures and HTML content
+              from Deutsche Rentenversicherung. Transforms unstructured documents into structured data
+              optimized for LLM ingestion, with custom chunking strategies, analytics, and
+              automated AWS deployment via CDK.
+            </p>
+            <div class="tech-stack">
+              <h4>Tech Stack</h4>
+              <ul>
+                <li>Python</li>
+                <li>AWS CDK</li>
+                <li>uv</li>
+                <li>MkDocs</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+        <article class="project-card">
+          <div class="project-content">
+            <h3><a href="https://github.com/Nikolaikl/bedrock-chat" target="_blank" rel="noopener noreferrer">Bedrock Chat (BrChat) - Fork & Customization</a></h3>
+            <p class="project-description">
+              Forked and heavily customized the AWS Samples Bedrock Chat platform for enterprise use.
+              Contributed 136+ commits: integrated a custom Angular frontend with Cognito SSO,
+              built target-specific frontend deployments, implemented a feedback model system,
+              created load testing scripts, managed upstream merges, and configured CDK deployments
+              with cost-center tagging and hybrid infrastructure.
+            </p>
+            <div class="tech-stack">
+              <h4>Tech Stack</h4>
+              <ul>
+                <li>TypeScript</li>
+                <li>Python</li>
+                <li>Angular</li>
+                <li>React</li>
+                <li>AWS CDK</li>
+                <li>AWS Bedrock</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+        <article class="project-card">
+          <div class="project-content">
+            <h3>Personal Website</h3>
             <p class="project-description">
               This website here!
             </p>
             <div class="tech-stack">
               <h4>Tech Stack</h4>
               <ul>
-                <li>Html</li>
+                <li>HTML</li>
                 <li>CSS</li>
               </ul>
             </div>
           </div>
           <div class="project-image">
-            <img src="assets/images/website.png">
+            <img src="assets/images/website.png" alt="Screenshot of this website">
           </div>
         </article>
       </div>
@@ -148,9 +226,9 @@
         <div class="skills">
           <h3>Technical Skills</h3>
           <ul>
-            <li>Languages: Python, SQL, Java, Kotlin, Typescript, JavaScript, Go, Terraform</li>
-            <li>Technologies: Apache Kafka, Apache Flink, TensorFlow, PyTorch, AWS, Docker, Kubernetes, MlFlow, Airflow, Snowflake, MySQL, Postgres</li>
-            <li>Expertise: Machine Learning, Data Mining, MLOps, Systems Design, DevOps </li>
+            <li>Languages: Python, SQL, JavaScript, Typescript, Java, Kotlin, Go, HCL</li>
+            <li>Technologies: Apache Kafka, Apache Flink, Python ML Stack (TensorFlow, PyTorch, Scikit-learn, XGBoost, Pandas), Python Frameworks (uv, ruff, pytest, fastapi), AWS (DynamoDB, EC2, Lambda, RDS, S3, SQS, Bedrock, IAM, CDN), ArgoCD, Kubernetes, Snowflake, Jenkins, ELK-Monitoring Stack</li>
+            <li>Expertise: Machine Learning, LLMOps/MLOps, Test Driven Development, DevOps, Data Engineering</li>
           </ul>
         </div>
         <div class="education">
@@ -178,7 +256,5 @@
 
   </footer>
 </body>
-
-</html>
 
 </html>
