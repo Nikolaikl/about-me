@@ -2,13 +2,13 @@
 :root {
   /* Colors */
   --black: #171321;
-  --darkgrey: #4a4a4a;
+  --darkgrey: #3a3a3a;
   --darkblue: #005582;
-  --darkorange: #aa5656;
-  --warmorange: #d58b82;
-  --aqua: #97ebdb;
-  --white: #daf8e3;
-  --soft-lavender: #e8d3e0;
+  --darkorange: #c9736a;
+  --warmorange: #e0978e;
+  --aqua: #7dd4c4;
+  --white: #ede8e4;
+  --soft-lavender: #e2dae0;
 
   /* Typography */
   --font-size: 1rem;
@@ -279,11 +279,11 @@ nav li:nth-last-child(-n + 2) a img {
 .gradient {
   background: linear-gradient(
     90deg,
-    rgba(131, 58, 180, 1) 0%,
-    rgba(253, 29, 29, 1) 50%,
-    rgba(252, 176, 69, 1) 100%
+    #4a3a5c 0%,
+    #c9736a 50%,
+    #e0978e 100%
   );
-  height: 2px;
+  height: 1px;
 }
 
 /* Media Queries */
