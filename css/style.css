@@ -925,6 +925,11 @@ a:visited {
   transition: opacity 0.4s ease, transform 0.4s ease, box-shadow 0.3s ease;
 }
 
+.xp-lightbox-window {
+  opacity: 1;
+  transform: none;
+}
+
 .xp-window.visible {
   opacity: 1;
   transform: scale(1) translateY(0);
