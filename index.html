@@ -11,7 +11,8 @@
 
 <body>
   <div class="retro-boot-screen" id="boot-screen">
-    <div class="retro-boot-logo">Loading<span> Portfolio</span>🪟</div>
+    <div class="retro-boot-logo">Nikolai<span>OS</span></div>
+    <div class="retro-boot-text">Professional Edition</div>
     <div class="retro-boot-bar-container">
       <div class="retro-boot-bar">
         <span></span><span></span><span></span>
@@ -59,13 +60,19 @@
       <div class="retro-window-body">
         <section id="intro">
           <div class="intro-content">
-            <p class="name">Hi my name is <span>Nikolai Klassen</span></p>
-            <p>ML Engineer & Tech Lead at
+            <div class="intro-greeting">C:\Users\Nikolai&gt; <span class="intro-typed" id="intro-typed"></span><span class="intro-cursor">_</span></div>
+            <p class="name"><span>Nikolai Klassen</span></p>
+            <p class="intro-role">ML Engineer & Tech Lead</p>
+            <p>Currently building a generative AI platform on AWS at
               <a href="https://www.deutsche-rentenversicherung.de/DRV/DE/Home/home_node.html" target="_blank"
-                rel="noopener noreferrer">Deutsche Rentenversicherung Bund</a>,
-              building a generative AI platform on AWS. Previously Data/ML Engineer at
-              <a href="https://www.billie.io">Billie</a>.
+                rel="noopener noreferrer">Deutsche Rentenversicherung Bund</a>.
+              Previously Data/ML Engineer at
+              <a href="https://www.billie.io" target="_blank" rel="noopener noreferrer">Billie</a>.
             </p>
+            <div class="intro-status">
+              <span class="status-indicator"></span>
+              <span>Available for interesting projects</span>
+            </div>
           </div>
         </section>
       </div>
@@ -255,18 +262,23 @@
       </div>
       <div class="retro-window-body">
         <section id="contact">
-          <div class="contact-content">
-            <p>If you want to collaborate on a project, please contact me</p>
-            <p>You can reach out via
-              <a href="mailto:nikolai.klassen91@gmail.com">email</a>,
-              <a href="https://www.github.com/nikolaikl">GitHub</a>,
-              or best via
-              <a href="https://www.linkedin.com/in/nikolai-k-33b9a5168/" class="linkedin">LinkedIn</a>
-            </p>
+          <div class="contact-dialog-layout">
+            <div class="contact-icon">&#9432;</div>
+            <div class="contact-content">
+              <p class="contact-headline">nikolai.exe wants to connect with you.</p>
+              <p>Reach out via
+                <a href="mailto:nikolai.klassen91@gmail.com">email</a>,
+                <a href="https://www.github.com/nikolaikl">GitHub</a>,
+                or best via
+                <a href="https://www.linkedin.com/in/nikolai-k-33b9a5168/" class="linkedin">LinkedIn</a>
+              </p>
+              <p class="contact-hint">Tip: I respond fastest on LinkedIn.</p>
+            </div>
           </div>
           <div class="retro-dialog-buttons">
-            <a href="mailto:nikolai.klassen91@gmail.com" class="retro-button">OK</a>
-            <button type="button" class="retro-button" id="contact-cancel">Cancel</button>
+            <a href="https://www.linkedin.com/in/nikolai-k-33b9a5168/" class="retro-button retro-button-primary" target="_blank" rel="noopener noreferrer">Connect</a>
+            <a href="mailto:nikolai.klassen91@gmail.com" class="retro-button">Email</a>
+            <button type="button" class="retro-button" id="contact-cancel">Maybe Later</button>
           </div>
         </section>
       </div>
@@ -283,60 +295,100 @@
       </div>
       <div class="retro-window-body">
         <section id="about">
-          <div class="about-content">
-            <div class="skills">
-              <h3>Technical Skills</h3>
-              <h4>Languages</h4>
-              <ul class="skill-pills">
-                <li>Python</li>
-                <li>SQL</li>
-                <li>JavaScript</li>
-                <li>TypeScript</li>
-                <li>Java</li>
-                <li>Kotlin</li>
-                <li>Go</li>
-                <li>HCL</li>
-              </ul>
-              <h4>Technologies</h4>
-              <ul class="skill-pills">
-                <li>Apache Kafka</li>
-                <li>Apache Flink</li>
-                <li>TensorFlow</li>
-                <li>PyTorch</li>
-                <li>Scikit-learn</li>
-                <li>Pandas</li>
-                <li>FastAPI</li>
-                <li>AWS</li>
-                <li>Kubernetes</li>
-                <li>ArgoCD</li>
-                <li>Snowflake</li>
-                <li>Jenkins</li>
-              </ul>
-              <h4>Expertise</h4>
-              <ul class="skill-pills">
-                <li>Machine Learning</li>
-                <li>LLMOps/MLOps</li>
-                <li>Test Driven Development</li>
-                <li>DevOps</li>
-                <li>Data Engineering</li>
-              </ul>
+          <div class="retro-tabs">
+            <button class="retro-tab active" data-tab="tab-skills">Skills</button>
+            <button class="retro-tab" data-tab="tab-education">Education</button>
+            <button class="retro-tab" data-tab="tab-languages">Languages</button>
+          </div>
+          <div class="retro-tab-body">
+            <div class="retro-tab-panel active" id="tab-skills">
+              <div class="retro-groupbox">
+                <legend>Programming Languages</legend>
+                <ul class="skill-pills">
+                  <li>Python</li>
+                  <li>SQL</li>
+                  <li>JavaScript</li>
+                  <li>TypeScript</li>
+                  <li>Java</li>
+                  <li>Kotlin</li>
+                  <li>Go</li>
+                  <li>HCL</li>
+                </ul>
+              </div>
+              <div class="retro-groupbox">
+                <legend>Technologies</legend>
+                <ul class="skill-pills">
+                  <li>Apache Kafka</li>
+                  <li>Apache Flink</li>
+                  <li>TensorFlow</li>
+                  <li>PyTorch</li>
+                  <li>Scikit-learn</li>
+                  <li>Pandas</li>
+                  <li>FastAPI</li>
+                  <li>AWS</li>
+                  <li>Kubernetes</li>
+                  <li>ArgoCD</li>
+                  <li>Snowflake</li>
+                  <li>Jenkins</li>
+                </ul>
+              </div>
+              <div class="retro-groupbox">
+                <legend>Expertise</legend>
+                <ul class="skill-pills">
+                  <li>Machine Learning</li>
+                  <li>LLMOps/MLOps</li>
+                  <li>Test Driven Development</li>
+                  <li>DevOps</li>
+                  <li>Data Engineering</li>
+                </ul>
+              </div>
             </div>
-            <div class="education">
-              <h3>Education</h3>
-              <ul>
-                <li>M.Sc. Data Science - Eberhard Karls Universität Tübingen (2019-2022)</li>
-                <li>B.A. Development Economics - Universität Bayreuth (2014-2018)</li>
-              </ul>
+            <div class="retro-tab-panel" id="tab-education">
+              <div class="retro-groupbox">
+                <legend>Degrees</legend>
+                <div class="education-entry">
+                  <div class="education-degree">M.Sc. Data Science</div>
+                  <div class="education-school">Eberhard Karls Universit&auml;t T&uuml;bingen</div>
+                  <div class="education-year">2019 - 2022</div>
+                </div>
+                <div class="education-entry">
+                  <div class="education-degree">B.A. Development Economics</div>
+                  <div class="education-school">Universit&auml;t Bayreuth</div>
+                  <div class="education-year">2014 - 2018</div>
+                </div>
+              </div>
             </div>
-            <div class="languages">
-              <h3>Languages</h3>
-              <ul>
-                <li>German (Native)</li>
-                <li>Russian (Native)</li>
-                <li>English (C2)</li>
-                <li>Italian (B1)</li>
-                <li>Spanish (B1)</li>
-              </ul>
+            <div class="retro-tab-panel" id="tab-languages">
+              <div class="retro-groupbox">
+                <legend>Spoken Languages</legend>
+                <div class="language-bars">
+                  <div class="language-item">
+                    <span class="language-name">German</span>
+                    <div class="language-bar"><div class="language-fill" style="width:100%"></div></div>
+                    <span class="language-level">Native</span>
+                  </div>
+                  <div class="language-item">
+                    <span class="language-name">Russian</span>
+                    <div class="language-bar"><div class="language-fill" style="width:100%"></div></div>
+                    <span class="language-level">Native</span>
+                  </div>
+                  <div class="language-item">
+                    <span class="language-name">English</span>
+                    <div class="language-bar"><div class="language-fill" style="width:95%"></div></div>
+                    <span class="language-level">C2</span>
+                  </div>
+                  <div class="language-item">
+                    <span class="language-name">Italian</span>
+                    <div class="language-bar"><div class="language-fill" style="width:50%"></div></div>
+                    <span class="language-level">B1</span>
+                  </div>
+                  <div class="language-item">
+                    <span class="language-name">Spanish</span>
+                    <div class="language-bar"><div class="language-fill" style="width:50%"></div></div>
+                    <span class="language-level">B1</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -366,13 +418,18 @@
       <span class="retro-start-text">start</span>
     </button>
     <nav class="retro-start-menu" id="start-menu" aria-label="Main navigation">
+      <div class="retro-start-menu-header">
+        <span class="retro-start-menu-avatar">&#128100;</span>
+        <span class="retro-start-menu-user">Nikolai Klassen</span>
+      </div>
       <ul>
-        <li><a href="#intro-window">Welcome</a></li>
-        <li><a href="#experience-window">Experience</a></li>
-        <li><a href="#projects-window">Projects</a></li>
-        <li><a href="#about-window">About</a></li>
-        <li><a href="#contact-window">Contact</a></li>
-        <li><a href="./assets/CV_2025_EN-2.pdf">CV</a></li>
+        <li><a href="#intro-window"><span class="menu-icon">&#128196;</span> Welcome</a></li>
+        <li><a href="#experience-window"><span class="menu-icon">&#128188;</span> Experience</a></li>
+        <li><a href="#projects-window"><span class="menu-icon">&#128193;</span> Projects</a></li>
+        <li><a href="#about-window"><span class="menu-icon">&#128187;</span> About</a></li>
+        <li><a href="#contact-window"><span class="menu-icon">&#128231;</span> Contact</a></li>
+        <li class="menu-divider"></li>
+        <li><a href="./assets/CV_2025_EN-2.pdf" target="_blank"><span class="menu-icon">&#128462;</span> Download CV</a></li>
       </ul>
     </nav>
     <div class="retro-taskbar-buttons">
