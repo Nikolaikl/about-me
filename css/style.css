@@ -1,8 +1,8 @@
 /* ============================================
-   Windows XP Theme - Portfolio
+   Retro Desktop Theme - Portfolio
    ============================================ */
 
-/* Variables - XP Color Palette */
+/* Variables - Retro Color Palette */
 :root {
   --xp-blue: #0055E5;
   --xp-blue-light: #0A7BFF;
@@ -60,7 +60,7 @@ body {
       #C8E6C9 100%);
   background-attachment: fixed;
   min-height: 100vh;
-  padding-bottom: 40px;
+  padding-bottom: 56px;
   overflow-x: hidden;
 }
 
@@ -110,18 +110,18 @@ a:visited {
     #0068FF 70%,
     #107BFF 90%,
     #1B8AFF 100%);
-  padding: 4px 6px;
+  padding: 6px 8px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 30px;
+  min-height: 36px;
   border-radius: 8px 8px 0 0;
   user-select: none;
 }
 
 .xp-titlebar-text {
   color: #FFFFFF;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: bold;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
   padding-left: 4px;
@@ -138,8 +138,8 @@ a:visited {
 }
 
 .xp-titlebar-buttons span {
-  width: 21px;
-  height: 21px;
+  width: 26px;
+  height: 26px;
   border-radius: 3px;
   display: inline-flex;
   align-items: center;
@@ -543,7 +543,7 @@ a:visited {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 36px;
+  height: 48px;
   background: linear-gradient(180deg,
     #2F5FD7 0%,
     #2353BF 3%,
@@ -572,11 +572,11 @@ a:visited {
   border-radius: 0 8px 8px 0;
   color: white;
   font-family: "Tahoma", sans-serif;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: bold;
   font-style: italic;
-  padding: 2px 12px 2px 8px;
-  height: 32px;
+  padding: 4px 16px 4px 10px;
+  height: 42px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -616,7 +616,7 @@ a:visited {
 .xp-start-menu {
   display: none;
   position: absolute;
-  bottom: 36px;
+  bottom: 48px;
   left: 0;
   background: #FFFFFF;
   border: 2px solid #0054E3;
@@ -692,9 +692,9 @@ a:visited {
   border-radius: 2px;
   color: white !important;
   text-decoration: none !important;
-  font-size: 11px;
-  padding: 2px 12px;
-  height: 26px;
+  font-size: 13px;
+  padding: 4px 16px;
+  height: 34px;
   display: inline-flex;
   align-items: center;
   white-space: nowrap;
@@ -742,8 +742,8 @@ a:visited {
 }
 
 .xp-system-tray img {
-  width: 20px;
-  height: 20px;
+  width: 28px;
+  height: 28px;
 }
 
 .xp-system-tray a {
@@ -753,7 +753,7 @@ a:visited {
 
 .xp-clock-area {
   color: white;
-  font-size: 11px;
+  font-size: 13px;
   padding-left: 6px;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
   white-space: nowrap;
@@ -792,7 +792,7 @@ a:visited {
 
 @media (max-width: 767px) {
   body {
-    padding: 8px 8px 44px 8px;
+    padding: 8px 8px 56px 8px;
   }
 
   .xp-window {
