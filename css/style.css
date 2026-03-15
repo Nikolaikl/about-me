@@ -352,6 +352,7 @@ nav li:nth-last-child(-n + 2) a img {
   .project-card {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    align-items: center;
     gap: 2rem;
     padding: 2rem;
     margin-bottom: 2rem;
