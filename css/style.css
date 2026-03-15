@@ -275,6 +275,10 @@ nav li:nth-last-child(-n + 2) a img {
   margin-bottom: 1rem;
 }
 
+.experience-previous {
+  grid-column: 1 / -1;
+}
+
 .duration {
   color: var(--aqua);
   font-family: var(--mono);
