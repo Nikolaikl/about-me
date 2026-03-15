@@ -85,9 +85,8 @@
     clippy.className = 'clippy-helper';
     clippy.innerHTML =
       '<div class="clippy-bubble">' +
-        '<button class="clippy-close" aria-label="Close">&times;</button>' +
-        '<p>' + greeting + 'It looks like you\'re checking out a portfolio!</p>' +
-        '<p class="clippy-hint">Try the Konami Code for a surprise.<br><kbd>&uarr;</kbd><kbd>&uarr;</kbd><kbd>&darr;</kbd><kbd>&darr;</kbd><kbd>&larr;</kbd><kbd>&rarr;</kbd><kbd>&larr;</kbd><kbd>&rarr;</kbd><kbd>B</kbd><kbd>A</kbd></p>' +
+      '<button class="clippy-close" aria-label="Close">&times;</button>' +
+      '<p>' + greeting + 'It looks like you\'re checking out a portfolio!</p>' +
       '</div>' +
       '<div class="clippy-character">&#128206;</div>';
     document.body.appendChild(clippy);
@@ -298,48 +297,11 @@
     observer.observe(panel, { attributes: true, attributeFilter: ['class'] });
   });
 
-  // Konami code Easter egg
-  var konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
-  var konamiIndex = 0;
-  document.addEventListener('keydown', function (e) {
-    if (e.key === konamiSequence[konamiIndex]) {
-      konamiIndex++;
-      if (konamiIndex === konamiSequence.length) {
-        konamiIndex = 0;
-        showBSOD();
-      }
-    } else {
-      konamiIndex = 0;
-    }
-  });
-
-  function showBSOD() {
-    var bsod = document.createElement('div');
-    bsod.style.cssText = 'position:fixed;inset:0;z-index:999999;background:#0000AA;color:#fff;font-family:"Courier New",monospace;padding:10vh 8vw;font-size:16px;line-height:1.8;cursor:pointer;';
-    bsod.innerHTML =
-      '<p style="background:#aaa;color:#0000AA;display:inline;padding:2px 8px;font-weight:bold;">  Nikolai Portfolio  </p><br><br>' +
-      'A fatal exception 0E has occurred at 0028:C0034B03 in VXD PORTFOLIO(01) +<br>' +
-      '00010E36. The current application will be terminated.<br><br>' +
-      '* Press any key to return to the portfolio.<br>' +
-      '* Press CTRL+ALT+DEL to pretend this never happened.<br><br>' +
-      'Press any key to continue <span style="animation:bsod-blink 1s step-end infinite;">_</span>';
-    var style = document.createElement('style');
-    style.textContent = '@keyframes bsod-blink{0%,50%{opacity:1}51%,100%{opacity:0}}';
-    bsod.appendChild(style);
-    document.body.appendChild(bsod);
-    var dismiss = function () {
-      bsod.remove();
-      document.removeEventListener('keydown', dismiss);
-    };
-    bsod.addEventListener('click', dismiss);
-    document.addEventListener('keydown', dismiss);
-  }
 
   // Console message for curious devs
   console.log(
     '%c Welcome to NikolaiOS! %c\n' +
-    'Built with vanilla HTML, CSS & JS — no frameworks needed.\n' +
-    'Found the Konami Code yet? Try it!\n' +
+    'Built with vanilla HTML, CSS & JS.\n' +
     'github.com/nikolaikl',
     'background:#003399;color:#fff;font-size:14px;padding:4px 8px;border-radius:2px;font-weight:bold;',
     'color:#003399;font-size:12px;'
