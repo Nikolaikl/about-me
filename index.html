@@ -6,301 +6,320 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Nikolai Klassen - Machine Learning Engineer and Tech Lead">
   <title>About Me</title>
-  <link rel="preconnect" href="https://rsms.me/" />
-  <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
-  <header>
-    <nav aria-label="Main navigation">
-      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
-      <ul>
-        <li>
-          <h1><a href="index.html">Welcome!</a></h1>
-        </li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="./assets/CV_2025_EN-2.pdf">CV</a></li>
-        <li>
-          <a href="https://www.github.com/nikolaikl" target="_blank" rel="noopener noreferrer"
-            aria-label="GitHub Profile">
-            <img src="assets/images/github.gif" alt="GitHub Icon">
-          </a>
-        </li>
-        <li>
-          <a href="https://www.linkedin.com/in/nikolai-k-33b9a5168/" target="_blank" rel="noopener noreferrer"
-            aria-label="LinkedIn Profile">
-            <img src="assets/images/linkedin.gif" alt="LinkedIn Icon">
-          </a>
-        </li>
-      </ul>
-    </nav>
-    <script>
-      document.querySelector('.nav-toggle').addEventListener('click', function() {
-        const ul = document.querySelector('nav ul');
-        const expanded = this.getAttribute('aria-expanded') === 'true';
-        ul.classList.toggle('active');
-        this.setAttribute('aria-expanded', !expanded);
-      });
-    </script>
-  </header>
-
   <main>
-    <section id="intro">
-      <div class="intro-content">
-        <p class="name">Hi my name is <span>Nikolai Klassen</span></p>
-        <p>ML Engineer & Tech Lead at
-          <a href="https://www.deutsche-rentenversicherung.de/DRV/DE/Home/home_node.html" target="_blank"
-            rel="noopener noreferrer">Deutsche Rentenversicherung Bund</a>,
-          building a generative AI platform on AWS. Previously Data/ML Engineer at
-          <a href="https://www.billie.io">Billie</a>.
-        </p>
-      </div>
-    </section>
-
-    <div class="gradient"></div>
-    <section id="professional-experience">
-      <h2>Professional Experience</h2>
-      <div class="experience-grid">
-        <article>
-          <h3>Machine Learning Engineer / Tech Lead at Deutsche Rentenversicherung Bund</h3>
-          <p class="duration">November 2024 - Present</p>
-          <ul>
-            <li>Leading development of a multilingual GenAI platform (TypeScript/Python) on AWS, targeting ~20k requests/hour.</li>
-            <li>Built RAG pipelines and ETL workflows transforming unstructured data for LLM ingestion.</li>
-            <li>Set up LLM monitoring, evaluation tooling, and CI/CD for reliable AI services.</li>
-            <li>Designed hybrid AWS/on-premise architecture; drove RFC and ADR adoption.</li>
-            <li>Mentoring junior data scientists across LLM and classical ML projects.</li>
-          </ul>
-        </article>
-        <article>
-          <h3>Data Engineer / Data Scientist at Billie.io</h3>
-          <p class="duration">October 2022 - October 2024</p>
-          <ul>
-            <li>ML-powered backend services with 99% availability for 20k daily orders.</li>
-            <li>Improved classification models, reducing defaults and fraud by 20%.</li>
-            <li>Real-time event pipelines with Kafka and Flink; CI/CD with GitHub Actions and Kubernetes.</li>
-            <li>Maintained data platform feature store across multiple teams.</li>
-          </ul>
-        </article>
-
-        <article class="experience-previous">
-          <h3>Previous Experience</h3>
-          <ul>
-            <li>Consulting Intern at PwC (2019)</li>
-            <li>Research Intern at United Nations Development Programme (2018-2019)</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-
-    <div class="gradient"></div>
-
-    <section id="projects">
-      <h2>Projects</h2>
-      <div class="project-grid">
-        <article class="project-card">
-          <div class="project-content">
-            <h3> Pension Chatbot - AI Chatbot Platform</h3>
-            <p class="project-description">
-              Full-stack AI chatbot platform built from scratch. Angular frontend, Python Lambda backend,
-              AWS Bedrock agents, multi-turn conversations, guardrails, and modular CDK infrastructure.
-            </p>
-            <div class="tech-stack">
-              <h4>Tech Stack</h4>
-              <ul>
-                <li>Python</li>
-                <li>Angular</li>
-                <li>TypeScript</li>
-                <li>AWS CDK</li>
-                <li>AWS Bedrock</li>
-                <li>Lambda</li>
-                <li>Cognito</li>
-                <li>CloudFront</li>
-              </ul>
-            </div>
-          </div>
-          <div class="project-image">
-            <img src="assets/images/arch_pension_chatbot.svg" alt="Pension Chatbot Architecture Diagram">
-          </div>
-        </article>
-        <article class="project-card project-card--wide-image">
-          <div class="project-content">
-            <h3>ETL Pipeline</h3>
-            <p class="project-description">
-              Python ETL pipeline transforming unstructured documents into structured, LLM-ready data
-              with custom chunking and automated AWS deployment.
-            </p>
-            <div class="tech-stack">
-              <h4>Tech Stack</h4>
-              <ul>
-                <li>Python</li>
-                <li>AWS CDK</li>
-                <li>uv</li>
-                <li>MkDocs</li>
-              </ul>
-            </div>
-          </div>
-          <div class="project-image">
-            <img src="assets/images/arch_etl_pipeline.svg" alt="ETL Pipeline Architecture Diagram">
-          </div>
-        </article>
-        <article class="project-card">
-          <div class="project-content">
-            <h3>Bedrock Chat (BrChat) - Fork & Customization</h3>
-            <p class="project-description">
-              Forked and customized AWS Bedrock Chat for enterprise use. 136+ commits: Angular frontend
-              with Cognito SSO, feedback system, load testing, and hybrid CDK deployments.
-            </p>
-            <div class="tech-stack">
-              <h4>Tech Stack</h4>
-              <ul>
-                <li>TypeScript</li>
-                <li>Python</li>
-                <li>Angular</li>
-                <li>React</li>
-                <li>AWS CDK</li>
-                <li>AWS Bedrock</li>
-              </ul>
-            </div>
-          </div>
-          <div class="project-image">
-            <img src="assets/images/arch_brchat.png" alt="Bedrock Chat Architecture Diagram">
-          </div>
-        </article>
-        <article class="project-card">
-          <div class="project-content">
-            <h3>Homelab / Proxmox Server</h3>
-            <p class="project-description">
-              Self-hosted infrastructure running 14+ LXC containers on Proxmox VE. Accessible exclusively
-              via Tailscale with Caddy reverse proxy, Pi-hole DNS, and Let's Encrypt wildcard certs.
-              Services include Home Assistant, Immich, Vaultwarden, Paperless-ngx, Jellyfin, n8n, and more.
-            </p>
-            <div class="tech-stack">
-              <h4>Tech Stack</h4>
-              <ul>
-                <li>Proxmox VE</li>
-                <li>Tailscale</li>
-                <li>Caddy</li>
-                <li>Pi-hole</li>
-                <li>Docker</li>
-                <li>nftables</li>
-                <li>Cloudflare DNS</li>
-                <li>Let's Encrypt</li>
-              </ul>
-            </div>
-          </div>
-          <div class="project-image">
-            <img src="assets/images/arch_homelab.svg" alt="Homelab Architecture Diagram">
-          </div>
-        </article>
-        <article class="project-card">
-          <div class="project-content">
-            <h3>Personal Website</h3>
-            <p class="project-description">
-              This website here!
-            </p>
-            <div class="tech-stack">
-              <h4>Tech Stack</h4>
-              <ul>
-                <li>HTML</li>
-                <li>CSS</li>
-              </ul>
-            </div>
-          </div>
-          <div class="project-image">
-            <img src="assets/images/website.png" alt="Screenshot of this website">
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <div class="gradient"></div>
-
-    <div class="section-lavender">
-      <section id="contact">
-        <h2>Contact</h2>
-        <div class="contact-content">
-          <p>If you want to collaborate on a project, please contact me</p>
-          <p>You can reach out via
-            <a href="mailto:nikolai.klassen@proton.me">email</a>,
-            <a href="https://www.github.com/nikolaikl">GitHub</a>,
-            or best via
-            <a href="https://www.linkedin.com/in/nikolai-k-33b9a5168/" class="linkedin">LinkedIn</a>
-          </p>
+    <div class="xp-window" id="intro-window">
+      <div class="xp-titlebar">
+        <span class="xp-titlebar-text">Welcome</span>
+        <div class="xp-titlebar-buttons">
+          <span class="xp-btn-minimize"></span>
+          <span class="xp-btn-maximize"></span>
+          <span class="xp-btn-close"></span>
         </div>
-      </section>
-
-      <div class="gradient"></div>
+      </div>
+      <div class="xp-window-body">
+        <section id="intro">
+          <div class="intro-content">
+            <p class="name">Hi my name is <span>Nikolai Klassen</span></p>
+            <p>ML Engineer & Tech Lead at
+              <a href="https://www.deutsche-rentenversicherung.de/DRV/DE/Home/home_node.html" target="_blank"
+                rel="noopener noreferrer">Deutsche Rentenversicherung Bund</a>,
+              building a generative AI platform on AWS. Previously Data/ML Engineer at
+              <a href="https://www.billie.io">Billie</a>.
+            </p>
+          </div>
+        </section>
+      </div>
     </div>
 
-    <section id="about">
-      <h2>About me</h2>
-      <div class="about-content">
-        <div class="skills">
-          <h3>Technical Skills</h3>
-          <h4>Languages</h4>
-          <ul class="skill-pills">
-            <li>Python</li>
-            <li>SQL</li>
-            <li>JavaScript</li>
-            <li>TypeScript</li>
-            <li>Java</li>
-            <li>Kotlin</li>
-            <li>Go</li>
-            <li>HCL</li>
-          </ul>
-          <h4>Technologies</h4>
-          <ul class="skill-pills">
-            <li>Apache Kafka</li>
-            <li>Apache Flink</li>
-            <li>TensorFlow</li>
-            <li>PyTorch</li>
-            <li>Scikit-learn</li>
-            <li>Pandas</li>
-            <li>FastAPI</li>
-            <li>AWS</li>
-            <li>Kubernetes</li>
-            <li>ArgoCD</li>
-            <li>Snowflake</li>
-            <li>Jenkins</li>
-          </ul>
-          <h4>Expertise</h4>
-          <ul class="skill-pills">
-            <li>Machine Learning</li>
-            <li>LLMOps/MLOps</li>
-            <li>Test Driven Development</li>
-            <li>DevOps</li>
-            <li>Data Engineering</li>
-          </ul>
-        </div>
-        <div class="education">
-          <h3>Education</h3>
-          <ul>
-            <li>M.Sc. Data Science - Eberhard Karls Universität Tübingen (2019-2022)</li>
-            <li>B.A. Development Economics - Universität Bayreuth (2014-2018)</li>
-          </ul>
-        </div>
-        <div class="languages">
-          <h3>Languages</h3>
-          <ul>
-            <li>German (Native)</li>
-            <li>Russian (Native)</li>
-            <li>English (C2)</li>
-            <li>Italian (B1)</li>
-            <li>Spanish (B1)</li>
-          </ul>
+    <div class="xp-window" id="experience-window">
+      <div class="xp-titlebar">
+        <span class="xp-titlebar-text">Professional Experience</span>
+        <div class="xp-titlebar-buttons">
+          <span class="xp-btn-minimize"></span>
+          <span class="xp-btn-maximize"></span>
+          <span class="xp-btn-close"></span>
         </div>
       </div>
-    </section>
+      <div class="xp-window-body">
+        <section id="professional-experience">
+          <div class="experience-grid">
+            <article>
+              <h3>Machine Learning Engineer / Tech Lead at Deutsche Rentenversicherung Bund</h3>
+              <p class="duration">November 2024 - Present</p>
+              <ul>
+                <li>Leading development of a multilingual GenAI platform (TypeScript/Python) on AWS, targeting ~20k requests/hour.</li>
+                <li>Built RAG pipelines and ETL workflows transforming unstructured data for LLM ingestion.</li>
+                <li>Set up LLM monitoring, evaluation tooling, and CI/CD for reliable AI services.</li>
+                <li>Designed hybrid AWS/on-premise architecture; drove RFC and ADR adoption.</li>
+                <li>Mentoring junior data scientists across LLM and classical ML projects.</li>
+              </ul>
+            </article>
+            <article>
+              <h3>Data Engineer / Data Scientist at Billie.io</h3>
+              <p class="duration">October 2022 - October 2024</p>
+              <ul>
+                <li>ML-powered backend services with 99% availability for 20k daily orders.</li>
+                <li>Improved classification models, reducing defaults and fraud by 20%.</li>
+                <li>Real-time event pipelines with Kafka and Flink; CI/CD with GitHub Actions and Kubernetes.</li>
+                <li>Maintained data platform feature store across multiple teams.</li>
+              </ul>
+            </article>
+            <article class="experience-previous">
+              <h3>Previous Experience</h3>
+              <ul>
+                <li>Consulting Intern at PwC (2019)</li>
+                <li>Research Intern at United Nations Development Programme (2018-2019)</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="xp-window" id="projects-window">
+      <div class="xp-titlebar">
+        <span class="xp-titlebar-text">Projects - Windows Explorer</span>
+        <div class="xp-titlebar-buttons">
+          <span class="xp-btn-minimize"></span>
+          <span class="xp-btn-maximize"></span>
+          <span class="xp-btn-close"></span>
+        </div>
+      </div>
+      <div class="xp-window-body">
+        <section id="projects">
+          <div class="project-grid">
+            <article class="project-card">
+              <div class="xp-inner-titlebar">Pension Chatbot - AI Chatbot Platform</div>
+              <div class="project-content">
+                <p class="project-description">
+                  Full-stack AI chatbot platform built from scratch. Angular frontend, Python Lambda backend,
+                  AWS Bedrock agents, multi-turn conversations, guardrails, and modular CDK infrastructure.
+                </p>
+                <div class="tech-stack">
+                  <h4>Tech Stack</h4>
+                  <ul>
+                    <li>Python</li>
+                    <li>Angular</li>
+                    <li>TypeScript</li>
+                    <li>AWS CDK</li>
+                    <li>AWS Bedrock</li>
+                    <li>Lambda</li>
+                    <li>Cognito</li>
+                    <li>CloudFront</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="project-image">
+                <img src="assets/images/arch_pension_chatbot.svg" alt="Pension Chatbot Architecture Diagram">
+              </div>
+            </article>
+            <article class="project-card project-card--wide-image">
+              <div class="xp-inner-titlebar">ETL Pipeline</div>
+              <div class="project-content">
+                <p class="project-description">
+                  Python ETL pipeline transforming unstructured documents into structured, LLM-ready data
+                  with custom chunking and automated AWS deployment.
+                </p>
+                <div class="tech-stack">
+                  <h4>Tech Stack</h4>
+                  <ul>
+                    <li>Python</li>
+                    <li>AWS CDK</li>
+                    <li>uv</li>
+                    <li>MkDocs</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="project-image">
+                <img src="assets/images/arch_etl_pipeline.svg" alt="ETL Pipeline Architecture Diagram">
+              </div>
+            </article>
+            <article class="project-card">
+              <div class="xp-inner-titlebar">Bedrock Chat (BrChat) - Fork & Customization</div>
+              <div class="project-content">
+                <p class="project-description">
+                  Forked and customized AWS Bedrock Chat for enterprise use. 136+ commits: Angular frontend
+                  with Cognito SSO, feedback system, load testing, and hybrid CDK deployments.
+                </p>
+                <div class="tech-stack">
+                  <h4>Tech Stack</h4>
+                  <ul>
+                    <li>TypeScript</li>
+                    <li>Python</li>
+                    <li>Angular</li>
+                    <li>React</li>
+                    <li>AWS CDK</li>
+                    <li>AWS Bedrock</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="project-image">
+                <img src="assets/images/arch_brchat.png" alt="Bedrock Chat Architecture Diagram">
+              </div>
+            </article>
+            <article class="project-card">
+              <div class="xp-inner-titlebar">Homelab / Proxmox Server</div>
+              <div class="project-content">
+                <p class="project-description">
+                  Self-hosted infrastructure running 14+ LXC containers on Proxmox VE. Accessible exclusively
+                  via Tailscale with Caddy reverse proxy, Pi-hole DNS, and Let's Encrypt wildcard certs.
+                  Services include Home Assistant, Immich, Vaultwarden, Paperless-ngx, Jellyfin, n8n, and more.
+                </p>
+                <div class="tech-stack">
+                  <h4>Tech Stack</h4>
+                  <ul>
+                    <li>Proxmox VE</li>
+                    <li>Tailscale</li>
+                    <li>Caddy</li>
+                    <li>Pi-hole</li>
+                    <li>Docker</li>
+                    <li>nftables</li>
+                    <li>Cloudflare DNS</li>
+                    <li>Let's Encrypt</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="project-image">
+                <img src="assets/images/arch_homelab.svg" alt="Homelab Architecture Diagram">
+              </div>
+            </article>
+            <article class="project-card">
+              <div class="xp-inner-titlebar">Personal Website</div>
+              <div class="project-content">
+                <p class="project-description">
+                  This website here!
+                </p>
+                <div class="tech-stack">
+                  <h4>Tech Stack</h4>
+                  <ul>
+                    <li>HTML</li>
+                    <li>CSS</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="project-image">
+                <img src="assets/images/website.png" alt="Screenshot of this website">
+              </div>
+            </article>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="xp-window xp-dialog" id="contact-window">
+      <div class="xp-titlebar">
+        <span class="xp-titlebar-text">Contact - Windows Messenger</span>
+        <div class="xp-titlebar-buttons">
+          <span class="xp-btn-close"></span>
+        </div>
+      </div>
+      <div class="xp-window-body">
+        <section id="contact">
+          <div class="contact-content">
+            <p>If you want to collaborate on a project, please contact me</p>
+            <p>You can reach out via
+              <a href="mailto:nikolai.klassen@proton.me">email</a>,
+              <a href="https://www.github.com/nikolaikl">GitHub</a>,
+              or best via
+              <a href="https://www.linkedin.com/in/nikolai-k-33b9a5168/" class="linkedin">LinkedIn</a>
+            </p>
+          </div>
+          <div class="xp-dialog-buttons">
+            <a href="mailto:nikolai.klassen@proton.me" class="xp-button">OK</a>
+            <a href="#" class="xp-button" onclick="return false;">Cancel</a>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="xp-window" id="about-window">
+      <div class="xp-titlebar">
+        <span class="xp-titlebar-text">About Me - System Properties</span>
+        <div class="xp-titlebar-buttons">
+          <span class="xp-btn-minimize"></span>
+          <span class="xp-btn-maximize"></span>
+          <span class="xp-btn-close"></span>
+        </div>
+      </div>
+      <div class="xp-window-body">
+        <section id="about">
+          <div class="about-content">
+            <div class="skills">
+              <h3>Technical Skills</h3>
+              <h4>Languages</h4>
+              <ul class="skill-pills">
+                <li>Python</li>
+                <li>SQL</li>
+                <li>JavaScript</li>
+                <li>TypeScript</li>
+                <li>Java</li>
+                <li>Kotlin</li>
+                <li>Go</li>
+                <li>HCL</li>
+              </ul>
+              <h4>Technologies</h4>
+              <ul class="skill-pills">
+                <li>Apache Kafka</li>
+                <li>Apache Flink</li>
+                <li>TensorFlow</li>
+                <li>PyTorch</li>
+                <li>Scikit-learn</li>
+                <li>Pandas</li>
+                <li>FastAPI</li>
+                <li>AWS</li>
+                <li>Kubernetes</li>
+                <li>ArgoCD</li>
+                <li>Snowflake</li>
+                <li>Jenkins</li>
+              </ul>
+              <h4>Expertise</h4>
+              <ul class="skill-pills">
+                <li>Machine Learning</li>
+                <li>LLMOps/MLOps</li>
+                <li>Test Driven Development</li>
+                <li>DevOps</li>
+                <li>Data Engineering</li>
+              </ul>
+            </div>
+            <div class="education">
+              <h3>Education</h3>
+              <ul>
+                <li>M.Sc. Data Science - Eberhard Karls Universität Tübingen (2019-2022)</li>
+                <li>B.A. Development Economics - Universität Bayreuth (2014-2018)</li>
+              </ul>
+            </div>
+            <div class="languages">
+              <h3>Languages</h3>
+              <ul>
+                <li>German (Native)</li>
+                <li>Russian (Native)</li>
+                <li>English (C2)</li>
+                <li>Italian (B1)</li>
+                <li>Spanish (B1)</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
   </main>
 
   <div class="lightbox" id="lightbox">
-    <button class="lightbox-close" aria-label="Close">&times;</button>
-    <img class="lightbox-img" id="lightbox-img" alt="">
+    <div class="xp-window xp-lightbox-window">
+      <div class="xp-titlebar">
+        <span class="xp-titlebar-text">Windows Picture and Fax Viewer</span>
+        <div class="xp-titlebar-buttons">
+          <span class="xp-btn-close lightbox-close" aria-label="Close"></span>
+        </div>
+      </div>
+      <div class="xp-window-body xp-lightbox-body">
+        <img class="lightbox-img" id="lightbox-img" alt="">
+      </div>
+    </div>
   </div>
 
   <script>
@@ -317,14 +336,79 @@
         });
       });
 
-      lightbox.addEventListener('click', function() {
-        lightbox.classList.remove('active');
+      lightbox.addEventListener('click', function(e) {
+        if (e.target === lightbox) {
+          lightbox.classList.remove('active');
+        }
       });
+
+      document.querySelectorAll('.lightbox-close').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          lightbox.classList.remove('active');
+        });
+      });
+
+      // Update clock in taskbar
+      function updateClock() {
+        const now = new Date();
+        const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        const clockEl = document.getElementById('taskbar-clock');
+        if (clockEl) clockEl.textContent = time;
+      }
+      updateClock();
+      setInterval(updateClock, 30000);
+
+      // Start menu toggle
+      const startBtn = document.getElementById('start-button');
+      const startMenu = document.getElementById('start-menu');
+      if (startBtn && startMenu) {
+        startBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          startMenu.classList.toggle('active');
+        });
+        document.addEventListener('click', function() {
+          startMenu.classList.remove('active');
+        });
+        startMenu.addEventListener('click', function(e) {
+          e.stopPropagation();
+        });
+      }
     })();
   </script>
 
-  <footer>
-  <p>&copy; 2025 Nikolai Klassen. All rights reserved.</p>
+  <footer class="xp-taskbar">
+    <button class="xp-start-button" id="start-button">
+      <span class="xp-start-logo">&#9776;</span>
+      <span class="xp-start-text">start</span>
+    </button>
+    <nav class="xp-start-menu" id="start-menu" aria-label="Main navigation">
+      <ul>
+        <li><a href="#intro-window">Welcome</a></li>
+        <li><a href="#experience-window">Experience</a></li>
+        <li><a href="#projects-window">Projects</a></li>
+        <li><a href="#about-window">About</a></li>
+        <li><a href="#contact-window">Contact</a></li>
+        <li><a href="./assets/CV_2025_EN-2.pdf">CV</a></li>
+      </ul>
+    </nav>
+    <div class="xp-taskbar-buttons">
+      <a href="#intro-window" class="xp-taskbar-btn active">Welcome</a>
+      <a href="#projects-window" class="xp-taskbar-btn">Projects</a>
+      <a href="#about-window" class="xp-taskbar-btn">About</a>
+    </div>
+    <div class="xp-system-tray">
+      <a href="https://www.github.com/nikolaikl" target="_blank" rel="noopener noreferrer"
+        aria-label="GitHub Profile">
+        <img src="assets/images/github.gif" alt="GitHub Icon">
+      </a>
+      <a href="https://www.linkedin.com/in/nikolai-k-33b9a5168/" target="_blank" rel="noopener noreferrer"
+        aria-label="LinkedIn Profile">
+        <img src="assets/images/linkedin.gif" alt="LinkedIn Icon">
+      </a>
+      <div class="xp-clock-area">
+        <span id="taskbar-clock">12:00</span>
+      </div>
+    </div>
   </footer>
 </body>
 
