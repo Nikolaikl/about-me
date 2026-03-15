@@ -204,6 +204,57 @@ nav li:nth-last-child(-n + 2) a img {
   object-fit: cover;
 }
 
+/* Wide image variant: image spans full width below content */
+.project-card--wide-image {
+  display: flex !important;
+  flex-direction: column;
+  grid-template-columns: unset !important;
+}
+
+.project-card--wide-image .project-image {
+  width: 100%;
+}
+
+.project-card--wide-image .project-image img {
+  width: 100%;
+  object-fit: contain;
+}
+
+/* Lightbox */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.9);
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.lightbox.active {
+  display: flex;
+}
+
+.lightbox-img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2.5rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
 /* Experience Section */
 .experience-grid {
   display: grid;

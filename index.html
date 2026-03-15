@@ -127,7 +127,7 @@
             <img src="assets/images/arch_pension_chatbot.svg" alt="Pension Chatbot Architecture Diagram">
           </div>
         </article>
-        <article class="project-card">
+        <article class="project-card project-card--wide-image">
           <div class="project-content">
             <h3>ETL Pipeline</h3>
             <p class="project-description">
@@ -268,6 +268,31 @@
       </div>
     </section>
   </main>
+
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" aria-label="Close">&times;</button>
+    <img class="lightbox-img" id="lightbox-img" alt="">
+  </div>
+
+  <script>
+    (function() {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+
+      document.querySelectorAll('.project-image img').forEach(function(img) {
+        img.style.cursor = 'pointer';
+        img.addEventListener('click', function() {
+          lightboxImg.src = this.src;
+          lightboxImg.alt = this.alt;
+          lightbox.classList.add('active');
+        });
+      });
+
+      lightbox.addEventListener('click', function() {
+        lightbox.classList.remove('active');
+      });
+    })();
+  </script>
 
   <footer>
   <p>&copy; 2025 Nikolai Klassen. All rights reserved.</p>
