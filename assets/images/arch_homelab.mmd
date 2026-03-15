@@ -1,0 +1,51 @@
+flowchart TD
+    Device["Device (anywhere)"]
+
+    Device -->|WireGuard| TS
+
+    subgraph LAN["Home Network"]
+        TS["Tailscale VPN"]
+        TS -->|Subnet Router| PVE
+
+        PVE["Proxmox VE\nIntel N150 · 16 GB RAM\n2× NVMe ~2 TB"]
+
+        Pihole["Pi-hole DNS"]
+        Device -->|DNS| Pihole
+        Pihole -->|resolves to| Caddy
+
+        Caddy["Caddy Reverse Proxy\nHTTPS wildcard"]
+
+        subgraph Services["LXC Containers"]
+            HA["Home Assistant"]
+            Immich["Immich"]
+            VW["Vaultwarden"]
+            Jellyfin["Jellyfin"]
+            Paperless["Paperless-ngx"]
+            N8N["n8n"]
+            OpenClaw["OpenClaw"]
+            Authentik["Authentik"]
+            UptimeKuma["Uptime Kuma"]
+            Beszel["Beszel"]
+            Readeck["Readeck"]
+        end
+
+        Caddy -->|reverse proxy| HA
+        Caddy -->|reverse proxy| Immich
+        Caddy -->|reverse proxy| VW
+        Caddy -->|reverse proxy| Jellyfin
+        Caddy -->|reverse proxy| Paperless
+        Caddy -->|reverse proxy| N8N
+        Caddy -->|reverse proxy| OpenClaw
+        Caddy -->|reverse proxy| Authentik
+        Caddy -->|reverse proxy| UptimeKuma
+        Caddy -->|reverse proxy| Beszel
+        Caddy -->|reverse proxy| Readeck
+
+        PVE --> HA
+    end
+
+    style Device fill:#f59e0b,color:#333
+    style TS fill:#6366f1,color:#fff
+    style PVE fill:#4a90d9,color:#fff
+    style Pihole fill:#96c93d,color:#fff
+    style Caddy fill:#22d3ee,color:#333
