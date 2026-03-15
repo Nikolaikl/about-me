@@ -515,7 +515,6 @@ a:visited {
   max-width: 96vw;
   max-height: 94vh;
   margin: 0;
-  width: 96vw;
 }
 
 .xp-lightbox-body {
@@ -524,11 +523,12 @@ a:visited {
   align-items: center;
   background: #000;
   padding: 4px;
+  overflow: auto;
 }
 
 .lightbox-img {
-  max-width: 94vw;
   max-height: 85vh;
+  min-width: min(94vw, 800px);
   object-fit: contain;
 }
 
