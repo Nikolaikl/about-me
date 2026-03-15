@@ -306,6 +306,25 @@ nav li:nth-last-child(-n + 2) a img {
   margin-bottom: 1rem;
 }
 
+.about-content h4 {
+  color: var(--aqua);
+  margin: 1rem 0 0.5rem;
+  font-size: 0.9rem;
+}
+
+.skill-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skill-pills li {
+  background-color: var(--darkblue);
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+}
+
 .about-content ul {
   list-style-type: none;
   padding: 0;
