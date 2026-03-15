@@ -202,6 +202,13 @@ nav li:nth-last-child(-n + 2) a img {
   height: auto;
   border-radius: 8px;
   object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.project-image img:hover {
+  transform: scale(1.03);
+  opacity: 0.85;
 }
 
 /* Wide image variant: image spans full width below content */
