@@ -10,6 +10,42 @@
 </head>
 
 <body>
+  <div class="xp-boot-screen" id="boot-screen">
+    <div class="xp-boot-logo">Microsoft<span> Windows</span><sup style="font-size:12px; color:#ccc">XP</sup></div>
+    <div class="xp-boot-bar-container">
+      <div class="xp-boot-bar">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+
+  <nav class="xp-desktop-icons" id="desktop-icons" style="opacity:0">
+    <a href="#intro-window" class="xp-desktop-icon">
+      <div class="xp-desktop-icon-img">&#128196;</div>
+      <span>Welcome</span>
+    </a>
+    <a href="#experience-window" class="xp-desktop-icon">
+      <div class="xp-desktop-icon-img">&#128188;</div>
+      <span>Experience</span>
+    </a>
+    <a href="#projects-window" class="xp-desktop-icon">
+      <div class="xp-desktop-icon-img">&#128193;</div>
+      <span>Projects</span>
+    </a>
+    <a href="#contact-window" class="xp-desktop-icon">
+      <div class="xp-desktop-icon-img">&#128231;</div>
+      <span>Contact</span>
+    </a>
+    <a href="#about-window" class="xp-desktop-icon">
+      <div class="xp-desktop-icon-img">&#128187;</div>
+      <span>About Me</span>
+    </a>
+    <a href="./assets/CV_2025_EN-2.pdf" class="xp-desktop-icon" target="_blank">
+      <div class="xp-desktop-icon-img">&#128462;</div>
+      <span>CV.pdf</span>
+    </a>
+  </nav>
+
   <main>
     <div class="xp-window" id="intro-window">
       <div class="xp-titlebar">
@@ -324,8 +360,30 @@
 
   <script>
     (function() {
-      const lightbox = document.getElementById('lightbox');
-      const lightboxImg = document.getElementById('lightbox-img');
+      // Boot screen
+      var bootScreen = document.getElementById('boot-screen');
+      var desktopIcons = document.getElementById('desktop-icons');
+      var windows = document.querySelectorAll('main .xp-window');
+
+      setTimeout(function() {
+        bootScreen.classList.add('fade-out');
+        setTimeout(function() {
+          bootScreen.style.display = 'none';
+          // Show desktop icons
+          desktopIcons.style.opacity = '1';
+          desktopIcons.style.transition = 'opacity 0.4s ease';
+          // Stagger window appearances
+          windows.forEach(function(win, i) {
+            setTimeout(function() {
+              win.classList.add('visible');
+            }, i * 150);
+          });
+        }, 600);
+      }, 1400);
+
+      // Lightbox
+      var lightbox = document.getElementById('lightbox');
+      var lightboxImg = document.getElementById('lightbox-img');
 
       document.querySelectorAll('.project-image img').forEach(function(img) {
         img.style.cursor = 'pointer';
@@ -348,19 +406,35 @@
         });
       });
 
+      // Minimize/close buttons
+      document.querySelectorAll('.xp-btn-minimize').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var win = this.closest('.xp-window');
+          win.classList.toggle('minimized');
+        });
+      });
+
+      document.querySelectorAll('.xp-btn-close').forEach(function(btn) {
+        if (btn.classList.contains('lightbox-close')) return;
+        btn.addEventListener('click', function() {
+          var win = this.closest('.xp-window');
+          win.classList.toggle('minimized');
+        });
+      });
+
       // Update clock in taskbar
       function updateClock() {
-        const now = new Date();
-        const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-        const clockEl = document.getElementById('taskbar-clock');
+        var now = new Date();
+        var time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        var clockEl = document.getElementById('taskbar-clock');
         if (clockEl) clockEl.textContent = time;
       }
       updateClock();
       setInterval(updateClock, 30000);
 
       // Start menu toggle
-      const startBtn = document.getElementById('start-button');
-      const startMenu = document.getElementById('start-menu');
+      var startBtn = document.getElementById('start-button');
+      var startMenu = document.getElementById('start-menu');
       if (startBtn && startMenu) {
         startBtn.addEventListener('click', function(e) {
           e.stopPropagation();
@@ -373,6 +447,31 @@
           e.stopPropagation();
         });
       }
+
+      // Close start menu when clicking a link
+      document.querySelectorAll('.xp-start-menu a').forEach(function(link) {
+        link.addEventListener('click', function() {
+          startMenu.classList.remove('active');
+        });
+      });
+
+      // Desktop icon double-click to un-minimize
+      document.querySelectorAll('.xp-desktop-icon[href^="#"]').forEach(function(icon) {
+        icon.addEventListener('click', function() {
+          var targetId = this.getAttribute('href').substring(1);
+          var targetWin = document.getElementById(targetId);
+          if (targetWin && targetWin.classList.contains('minimized')) {
+            targetWin.classList.remove('minimized');
+          }
+        });
+      });
+
+      // Keyboard: Escape to close lightbox
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+          lightbox.classList.remove('active');
+        }
+      });
     })();
   </script>
 

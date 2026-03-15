@@ -28,6 +28,7 @@
 /* Base Styles */
 html {
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 *,
@@ -60,6 +61,7 @@ body {
   background-attachment: fixed;
   min-height: 100vh;
   padding-bottom: 40px;
+  overflow-x: hidden;
 }
 
 /* Typography */
@@ -831,6 +833,259 @@ a:visited {
   #intro .name span {
     font-size: 22px;
   }
+
+  .xp-desktop-icons {
+    margin: 12px auto 4px;
+    gap: 4px;
+  }
+
+  .xp-desktop-icon {
+    min-width: 56px;
+    padding: 4px 6px;
+    font-size: 10px;
+  }
+
+  .xp-desktop-icon-img {
+    width: 32px;
+    height: 32px;
+    font-size: 22px;
+  }
+}
+
+/* ============================================
+   XP Boot Screen
+   ============================================ */
+.xp-boot-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.6s ease;
+}
+
+.xp-boot-screen.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.xp-boot-logo {
+  color: #fff;
+  font-family: "Tahoma", sans-serif;
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 32px;
+  letter-spacing: 1px;
+}
+
+.xp-boot-logo span {
+  color: #FF8C00;
+  font-style: italic;
+}
+
+.xp-boot-bar-container {
+  width: 220px;
+  height: 22px;
+  background: #000;
+  border: 1px solid #333;
+  border-radius: 2px;
+  padding: 3px;
+  overflow: hidden;
+}
+
+.xp-boot-bar {
+  display: flex;
+  gap: 3px;
+  animation: xp-boot-slide 1.5s ease-in-out infinite;
+}
+
+.xp-boot-bar span {
+  width: 12px;
+  height: 14px;
+  background: linear-gradient(180deg, #6699FF 0%, #3366CC 50%, #3366FF 100%);
+  border-radius: 1px;
+}
+
+@keyframes xp-boot-slide {
+  0% { transform: translateX(-60px); opacity: 0; }
+  30% { opacity: 1; }
+  70% { opacity: 1; }
+  100% { transform: translateX(180px); opacity: 0; }
+}
+
+/* ============================================
+   Window Animations
+   ============================================ */
+.xp-window {
+  opacity: 0;
+  transform: scale(0.95) translateY(10px);
+  transition: opacity 0.4s ease, transform 0.4s ease, box-shadow 0.3s ease;
+}
+
+.xp-window.visible {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.xp-window:hover {
+  box-shadow:
+    3px 3px 15px rgba(0, 0, 0, 0.35),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Window minimized state */
+.xp-window.minimized {
+  transform: scale(0.95) translateY(0);
+  overflow: hidden;
+}
+
+.xp-window.minimized .xp-window-body {
+  max-height: 0;
+  padding: 0 12px;
+  opacity: 0;
+  transition: max-height 0.35s ease, padding 0.35s ease, opacity 0.2s ease;
+}
+
+.xp-window:not(.minimized) .xp-window-body {
+  max-height: 5000px;
+  opacity: 1;
+  transition: max-height 0.5s ease, padding 0.35s ease, opacity 0.3s ease 0.1s;
+}
+
+/* Titlebar buttons interactive */
+.xp-btn-minimize:hover,
+.xp-btn-maximize:hover {
+  background: linear-gradient(180deg, #5CA8FF 0%, #3C7ADF 50%, #2A60B5 100%);
+}
+
+.xp-btn-close:hover {
+  background: linear-gradient(180deg, #FF9E85 0%, #F05050 40%, #D83838 100%);
+}
+
+.xp-btn-minimize,
+.xp-btn-maximize,
+.xp-btn-close {
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+/* ============================================
+   Desktop Icons
+   ============================================ */
+.xp-desktop-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  max-width: 1000px;
+  margin: 24px auto 8px;
+  padding: 0 16px;
+}
+
+.xp-desktop-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 10px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  cursor: pointer;
+  text-decoration: none;
+  color: #fff;
+  font-size: 11px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  font-family: "Tahoma", sans-serif;
+  min-width: 72px;
+  text-align: center;
+  transition: background 0.15s ease;
+}
+
+.xp-desktop-icon:hover {
+  background: rgba(50, 100, 200, 0.35);
+  border-color: rgba(100, 150, 255, 0.5);
+  color: #fff;
+}
+
+.xp-desktop-icon:visited {
+  color: #fff;
+}
+
+.xp-desktop-icon-img {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.5));
+}
+
+/* ============================================
+   Project Card Hover
+   ============================================ */
+.project-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    inset 1px 1px 0 var(--xp-button-highlight),
+    inset -1px -1px 0 var(--xp-button-dark-shadow),
+    2px 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.project-card:hover .xp-inner-titlebar {
+  background: linear-gradient(90deg, #5A82B5 0%, #A0BFD8 100%);
+}
+
+/* ============================================
+   Taskbar active tracking
+   ============================================ */
+.xp-taskbar-btn {
+  transition: background 0.15s ease;
+}
+
+.xp-taskbar-btn.current {
+  background: linear-gradient(180deg,
+    #2450A0 0%,
+    #1B3F8A 40%,
+    #163580 60%,
+    #1B3F8A 100%);
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================
+   Scroll indicator on project images
+   ============================================ */
+.project-image img {
+  transition: opacity 0.2s ease, transform 0.3s ease;
+}
+
+.project-image img:hover {
+  opacity: 1;
+  transform: scale(1.01);
+}
+
+/* ============================================
+   Better link styling
+   ============================================ */
+#intro a {
+  color: #0055E5;
+  font-weight: bold;
+  transition: color 0.15s ease;
+}
+
+#intro a:hover {
+  color: #3388FF;
+}
+
+#intro a:visited {
+  color: #0055E5;
 }
 
 @media (min-width: 850px) {
