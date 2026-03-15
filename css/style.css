@@ -501,10 +501,10 @@ a:visited {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.85);
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 10px;
 }
 
 .lightbox.active {
@@ -512,9 +512,10 @@ a:visited {
 }
 
 .xp-lightbox-window {
-  max-width: 90vw;
-  max-height: 90vh;
+  max-width: 96vw;
+  max-height: 94vh;
   margin: 0;
+  width: 96vw;
 }
 
 .xp-lightbox-body {
@@ -526,8 +527,8 @@ a:visited {
 }
 
 .lightbox-img {
-  max-width: 85vw;
-  max-height: 80vh;
+  max-width: 94vw;
+  max-height: 85vh;
   object-fit: contain;
 }
 
