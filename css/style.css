@@ -294,7 +294,7 @@ a:visited {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #21A121;
+  background: #ff4500;
   animation: status-pulse 2s ease-in-out infinite;
 }
 
