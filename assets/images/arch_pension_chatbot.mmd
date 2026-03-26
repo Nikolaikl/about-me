@@ -1,0 +1,37 @@
+flowchart TB
+    User[User Browser]
+    CF[CloudFront CDN]
+    S3FE[S3 Frontend Bucket]
+    Cognito[Cognito User Pool]
+    APIGW[API Gateway]
+    Orch[Orchestrator Lambda]
+    Guard[Bedrock Guardrails]
+    DDB[(DynamoDB Conversations)]
+    KB[Bedrock Knowledge Base]
+    S3Vec[(S3 Vectors)]
+    Nova[Bedrock Nova Pro]
+    S3Src[(S3 Source Bucket)]
+    ETLL[ETL Lambda]
+    S3Ing[(S3 Ingestion Bucket)]
+
+    User --> CF
+    CF --> S3FE
+    User --> Cognito
+    User --> APIGW
+    APIGW --> Cognito
+    APIGW --> Orch
+
+    Orch --> Guard
+    Orch --> DDB
+    Orch --> KB
+    Orch --> Nova
+    KB --> S3Vec
+
+    S3Src --> ETLL
+    ETLL --> S3Ing
+    S3Ing --> KB
+
+    style Guard fill:#ff9999
+    style DDB fill:#99ccff
+    style S3Vec fill:#99ccff
+    style Nova fill:#ffcc99
