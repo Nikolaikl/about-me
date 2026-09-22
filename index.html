@@ -14,9 +14,21 @@
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='2' fill='%230055E5'/%3E%3Ctext x='8' y='12' font-family='Tahoma,sans-serif' font-size='10' font-weight='bold' fill='%23fff' text-anchor='middle'%3EN%3C/text%3E%3C/svg%3E"
     />
     <link rel="stylesheet" href="css/style.css" />
+
+    <!-- Markiert JS-Verfuegbarkeit, bevor CSS greift. Ohne diese Klasse
+         bleiben alle Inhalte sichtbar und der Boot-Screen aus. -->
+    <script>
+      document.documentElement.className += " js";
+    </script>
   </head>
 
   <body>
+    <noscript>
+      <p class="noscript-note">
+        JavaScript is off, so the desktop effects are disabled. All content
+        below is fully available.
+      </p>
+    </noscript>
     <div class="retro-boot-screen" id="boot-screen">
       <div class="retro-boot-logo">Nikolai<span>OS</span></div>
       <div class="retro-boot-text">Professional Edition</div>
@@ -27,33 +39,34 @@
       </div>
     </div>
 
-    <nav class="retro-desktop-icons desktop-icons-hidden" id="desktop-icons">
+    <nav class="retro-desktop-icons" id="desktop-icons" aria-label="Desktop">
       <a href="#intro-window" class="retro-desktop-icon">
-        <div class="retro-desktop-icon-img">&#128196;</div>
+        <div class="retro-desktop-icon-img" aria-hidden="true">&#128196;</div>
         <span>Welcome</span>
       </a>
       <a href="#experience-window" class="retro-desktop-icon">
-        <div class="retro-desktop-icon-img">&#128188;</div>
+        <div class="retro-desktop-icon-img" aria-hidden="true">&#128188;</div>
         <span>Experience</span>
       </a>
       <a href="#projects-window" class="retro-desktop-icon">
-        <div class="retro-desktop-icon-img">&#128193;</div>
+        <div class="retro-desktop-icon-img" aria-hidden="true">&#128193;</div>
         <span>Projects</span>
       </a>
       <a href="#contact-window" class="retro-desktop-icon">
-        <div class="retro-desktop-icon-img">&#128231;</div>
+        <div class="retro-desktop-icon-img" aria-hidden="true">&#128231;</div>
         <span>Contact</span>
       </a>
       <a href="#about-window" class="retro-desktop-icon">
-        <div class="retro-desktop-icon-img">&#128187;</div>
+        <div class="retro-desktop-icon-img" aria-hidden="true">&#128187;</div>
         <span>About Me</span>
       </a>
       <a
         href="./assets/CV_2025_EN-2.pdf"
         class="retro-desktop-icon"
         target="_blank"
+        rel="noopener noreferrer"
       >
-        <div class="retro-desktop-icon-img">&#128229;</div>
+        <div class="retro-desktop-icon-img" aria-hidden="true">&#128229;</div>
         <span>CV.pdf</span>
       </a>
     </nav>
@@ -66,17 +79,19 @@
             <button
               type="button"
               class="retro-btn-minimize"
-              aria-label="Minimize"
+              aria-label="Fenster einklappen"
+              aria-expanded="true"
             ></button>
             <button
               type="button"
               class="retro-btn-maximize"
-              aria-label="Maximize"
+              aria-label="Maximieren"
             ></button>
             <button
               type="button"
               class="retro-btn-close"
-              aria-label="Close"
+              aria-label="Fenster einklappen"
+              aria-expanded="true"
             ></button>
           </div>
         </div>
@@ -88,7 +103,7 @@
                 <span class="intro-typed" id="intro-typed"></span
                 ><span class="intro-cursor">_</span>
               </div>
-              <p class="name"><span>Nikolai Klassen</span></p>
+              <h1 class="name"><span>Nikolai Klassen</span></h1>
               <p class="intro-role">
                 Machine Learning Engineer / MLOps Engineer
               </p>
@@ -109,10 +124,10 @@
                   >Deutsche Rentenversicherung Bund</a
                 >.
               </p>
-              <div class="intro-status">
-                <span class="status-indicator"></span>
-                <span>Unavailable for Projects atm.</span>
-              </div>
+              <p class="intro-status">
+                <span class="status-indicator" aria-hidden="true"></span>
+                <span>Currently not available for new projects</span>
+              </p>
             </div>
           </section>
         </div>
@@ -120,22 +135,24 @@
 
       <div class="retro-window" id="experience-window">
         <div class="retro-titlebar">
-          <span class="retro-titlebar-text">Professional Experience</span>
+          <h2 class="retro-titlebar-text">Professional Experience</h2>
           <div class="retro-titlebar-buttons">
             <button
               type="button"
               class="retro-btn-minimize"
-              aria-label="Minimize"
+              aria-label="Fenster einklappen"
+              aria-expanded="true"
             ></button>
             <button
               type="button"
               class="retro-btn-maximize"
-              aria-label="Maximize"
+              aria-label="Maximieren"
             ></button>
             <button
               type="button"
               class="retro-btn-close"
-              aria-label="Close"
+              aria-label="Fenster einklappen"
+              aria-expanded="true"
             ></button>
           </div>
         </div>
@@ -245,22 +262,24 @@
 
       <div class="retro-window" id="projects-window">
         <div class="retro-titlebar">
-          <span class="retro-titlebar-text">Projects - Explorer</span>
+          <h2 class="retro-titlebar-text">Projects - Explorer</h2>
           <div class="retro-titlebar-buttons">
             <button
               type="button"
               class="retro-btn-minimize"
-              aria-label="Minimize"
+              aria-label="Fenster einklappen"
+              aria-expanded="true"
             ></button>
             <button
               type="button"
               class="retro-btn-maximize"
-              aria-label="Maximize"
+              aria-label="Maximieren"
             ></button>
             <button
               type="button"
               class="retro-btn-close"
-              aria-label="Close"
+              aria-label="Fenster einklappen"
+              aria-expanded="true"
             ></button>
           </div>
         </div>
@@ -268,9 +287,7 @@
           <section id="projects">
             <div class="project-grid">
               <article class="project-card">
-                <div class="retro-inner-titlebar">
-                  Pension Chatbot - AI Chatbot Platform
-                </div>
+                <h3 class="retro-inner-titlebar">Pension Chatbot - AI Chatbot Platform</h3>
                 <div class="project-content">
                   <p class="project-description">
                     Full-stack AI chatbot platform built from scratch. Angular
@@ -296,11 +313,15 @@
                   <img
                     src="assets/images/arch_pension_chatbot.svg"
                     alt="Pension Chatbot Architecture Diagram"
+                    width="1228"
+                    height="586"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </article>
               <article class="project-card project-card--wide-image">
-                <div class="retro-inner-titlebar">ETL Pipeline</div>
+                <h3 class="retro-inner-titlebar">ETL Pipeline</h3>
                 <div class="project-content">
                   <p class="project-description">
                     Python ETL pipeline transforming unstructured documents into
@@ -321,13 +342,15 @@
                   <img
                     src="assets/images/arch_etl_pipeline.svg"
                     alt="ETL Pipeline Architecture Diagram"
+                    width="1099"
+                    height="108"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </article>
               <article class="project-card">
-                <div class="retro-inner-titlebar">
-                  Bedrock Chat (BrChat) - Fork & Customization
-                </div>
+                <h3 class="retro-inner-titlebar">Bedrock Chat (BrChat) - Fork & Customization</h3>
                 <div class="project-content">
                   <p class="project-description">
                     Forked and customized AWS Bedrock Chat for enterprise use.
@@ -350,11 +373,15 @@
                   <img
                     src="assets/images/arch_brchat.png"
                     alt="Bedrock Chat Architecture Diagram"
+                    width="1100"
+                    height="777"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </article>
               <article class="project-card">
-                <div class="retro-inner-titlebar">Homelab / Proxmox Server</div>
+                <h3 class="retro-inner-titlebar">Homelab / Proxmox Server</h3>
                 <div class="project-content">
                   <p class="project-description">
                     Self-hosted infrastructure running 14+ LXC containers on
@@ -381,11 +408,15 @@
                   <img
                     src="assets/images/arch_homelab.svg"
                     alt="Homelab Architecture Diagram"
+                    width="1407"
+                    height="1226"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </article>
               <article class="project-card">
-                <div class="retro-inner-titlebar">Personal Website</div>
+                <h3 class="retro-inner-titlebar">Personal Website</h3>
                 <div class="project-content">
                   <p class="project-description">
                     This website here! A retro desktop UI built with vanilla
@@ -406,6 +437,10 @@
                   <img
                     src="assets/images/website.png"
                     alt="Screenshot of this website"
+                    width="1100"
+                    height="543"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </article>
@@ -416,33 +451,41 @@
 
       <div class="retro-window retro-dialog" id="contact-window">
         <div class="retro-titlebar">
-          <span class="retro-titlebar-text">Contact - Messenger</span>
+          <h2 class="retro-titlebar-text">Contact - Messenger</h2>
           <div class="retro-titlebar-buttons">
             <button
               type="button"
               class="retro-btn-close"
-              aria-label="Close"
+              aria-label="Fenster einklappen"
+              aria-expanded="true"
             ></button>
           </div>
         </div>
         <div class="retro-window-body">
           <section id="contact">
             <div class="contact-dialog-layout">
-              <div class="contact-icon">&#9432;</div>
+              <div class="contact-icon" aria-hidden="true">&#9432;</div>
               <div class="contact-content">
-                <p class="contact-headline">if you want to connect with me.</p>
-                <p>
-                  Reach out via
-                  <a href="mailto:nikolai.klassen91@gmail.com">email</a>,
-                  <a href="https://www.github.com/nikolaikl">GitHub</a>, or best
-                  via
+                <p class="contact-headline">
+                  I reply fastest on
                   <a
                     href="https://www.linkedin.com/in/nikolai-k-33b9a5168/"
                     class="linkedin"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     >LinkedIn</a
-                  >
+                  >.
                 </p>
-                <p class="contact-hint">I respond fastest on LinkedIn.</p>
+                <p>
+                  Also reachable by
+                  <a href="mailto:nikolai.klassen91@gmail.com">email</a> or on
+                  <a
+                    href="https://www.github.com/nikolaikl"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >GitHub</a
+                  >.
+                </p>
               </div>
             </div>
             <div class="retro-dialog-buttons">
@@ -466,45 +509,77 @@
 
       <div class="retro-window" id="about-window">
         <div class="retro-titlebar">
-          <span class="retro-titlebar-text">About Me - System Properties</span>
+          <h2 class="retro-titlebar-text">About Me - System Properties</h2>
           <div class="retro-titlebar-buttons">
             <button
               type="button"
               class="retro-btn-minimize"
-              aria-label="Minimize"
+              aria-label="Fenster einklappen"
+              aria-expanded="true"
             ></button>
             <button
               type="button"
               class="retro-btn-maximize"
-              aria-label="Maximize"
+              aria-label="Maximieren"
             ></button>
             <button
               type="button"
               class="retro-btn-close"
-              aria-label="Close"
+              aria-label="Fenster einklappen"
+              aria-expanded="true"
             ></button>
           </div>
         </div>
         <div class="retro-window-body">
           <section id="about">
-            <div class="retro-tabs">
-              <button class="retro-tab active" data-tab="tab-skills">
+            <div class="retro-tabs" role="tablist" aria-label="About me">
+              <button
+                type="button"
+                class="retro-tab active"
+                id="tab-skills-tab"
+                role="tab"
+                aria-selected="true"
+                aria-controls="tab-skills"
+                data-tab="tab-skills"
+              >
                 Skills
               </button>
-              <button class="retro-tab" data-tab="tab-education">
+              <button
+                type="button"
+                class="retro-tab"
+                id="tab-education-tab"
+                role="tab"
+                aria-selected="false"
+                aria-controls="tab-education"
+                tabindex="-1"
+                data-tab="tab-education"
+              >
                 Education
               </button>
-              <button class="retro-tab" data-tab="tab-languages">
+              <button
+                type="button"
+                class="retro-tab"
+                id="tab-languages-tab"
+                role="tab"
+                aria-selected="false"
+                aria-controls="tab-languages"
+                tabindex="-1"
+                data-tab="tab-languages"
+              >
                 Languages
               </button>
             </div>
             <div class="retro-tab-body">
-              <div class="retro-tab-panel active" id="tab-skills">
+              <div
+                class="retro-tab-panel active"
+                id="tab-skills"
+                role="tabpanel"
+                aria-labelledby="tab-skills-tab"
+                tabindex="0"
+              >
                 <div class="skills-grid">
-                  <div class="retro-groupbox">
-                    <span class="retro-groupbox-title"
-                      >Programming Languages</span
-                    >
+                  <div class="retro-groupbox" data-accent="langs">
+                    <h3 class="retro-groupbox-title">Programming Languages</h3>
                     <ul class="skill-pills">
                       <li>Python</li>
                       <li>SQL</li>
@@ -516,10 +591,8 @@
                       <li>HCL</li>
                     </ul>
                   </div>
-                  <div class="retro-groupbox">
-                    <span class="retro-groupbox-title"
-                      >Cloud &amp; Infrastructure</span
-                    >
+                  <div class="retro-groupbox" data-accent="cloud">
+                    <h3 class="retro-groupbox-title">Cloud &amp; Infrastructure</h3>
                     <ul class="skill-pills">
                       <li>AWS</li>
                       <li>Bedrock</li>
@@ -533,10 +606,8 @@
                       <li>Proxmox</li>
                     </ul>
                   </div>
-                  <div class="retro-groupbox">
-                    <span class="retro-groupbox-title"
-                      >CI/CD &amp; Observability</span
-                    >
+                  <div class="retro-groupbox" data-accent="cicd">
+                    <h3 class="retro-groupbox-title">CI/CD &amp; Observability</h3>
                     <ul class="skill-pills">
                       <li>GitHub Actions</li>
                       <li>Jenkins</li>
@@ -545,8 +616,8 @@
                       <li>Langfuse</li>
                     </ul>
                   </div>
-                  <div class="retro-groupbox">
-                    <span class="retro-groupbox-title">Data &amp; ML</span>
+                  <div class="retro-groupbox" data-accent="data">
+                    <h3 class="retro-groupbox-title">Data &amp; ML</h3>
                     <ul class="skill-pills">
                       <li>Apache Kafka</li>
                       <li>Apache Flink</li>
@@ -558,8 +629,8 @@
                       <li>XGBoost</li>
                     </ul>
                   </div>
-                  <div class="retro-groupbox">
-                    <span class="retro-groupbox-title">LLM &amp; GenAI</span>
+                  <div class="retro-groupbox" data-accent="llm">
+                    <h3 class="retro-groupbox-title">LLM &amp; GenAI</h3>
                     <ul class="skill-pills">
                       <li>RAG</li>
                       <li>Agentic Workflows</li>
@@ -568,8 +639,8 @@
                       <li>n8n</li>
                     </ul>
                   </div>
-                  <div class="retro-groupbox">
-                    <span class="retro-groupbox-title">Python Tooling</span>
+                  <div class="retro-groupbox" data-accent="tooling">
+                    <h3 class="retro-groupbox-title">Python Tooling</h3>
                     <ul class="skill-pills">
                       <li>uv</li>
                       <li>ruff</li>
@@ -579,9 +650,15 @@
                   </div>
                 </div>
               </div>
-              <div class="retro-tab-panel" id="tab-education">
+              <div
+                class="retro-tab-panel"
+                id="tab-education"
+                role="tabpanel"
+                aria-labelledby="tab-education-tab"
+                tabindex="0"
+              >
                 <div class="retro-groupbox">
-                  <span class="retro-groupbox-title">Degrees</span>
+                  <h3 class="retro-groupbox-title">Degrees</h3>
                   <div class="education-entry">
                     <div class="education-degree">M.Sc. Data Science</div>
                     <div class="education-school">
@@ -600,42 +677,68 @@
                   </div>
                 </div>
               </div>
-              <div class="retro-tab-panel" id="tab-languages">
+              <div
+                class="retro-tab-panel"
+                id="tab-languages"
+                role="tabpanel"
+                aria-labelledby="tab-languages-tab"
+                tabindex="0"
+              >
                 <div class="retro-groupbox">
-                  <span class="retro-groupbox-title">Spoken Languages</span>
+                  <h3 class="retro-groupbox-title">Spoken Languages</h3>
                   <div class="language-bars">
                     <div class="language-item">
                       <span class="language-name">German</span>
-                      <div class="language-bar">
-                        <div class="language-fill" style="width: 100%"></div>
+                      <div
+                        class="language-bar"
+                        role="img"
+                        aria-label="German: Native"
+                      >
+                        <div class="language-fill" style="--fill: 1.0"></div>
                       </div>
                       <span class="language-level">Native</span>
                     </div>
                     <div class="language-item">
                       <span class="language-name">Russian</span>
-                      <div class="language-bar">
-                        <div class="language-fill" style="width: 100%"></div>
+                      <div
+                        class="language-bar"
+                        role="img"
+                        aria-label="Russian: Native"
+                      >
+                        <div class="language-fill" style="--fill: 1.0"></div>
                       </div>
                       <span class="language-level">Native</span>
                     </div>
                     <div class="language-item">
                       <span class="language-name">English</span>
-                      <div class="language-bar">
-                        <div class="language-fill" style="width: 95%"></div>
+                      <div
+                        class="language-bar"
+                        role="img"
+                        aria-label="English: C2"
+                      >
+                        <div class="language-fill" style="--fill: 0.95"></div>
                       </div>
                       <span class="language-level">C2</span>
                     </div>
                     <div class="language-item">
                       <span class="language-name">Italian</span>
-                      <div class="language-bar">
-                        <div class="language-fill" style="width: 50%"></div>
+                      <div
+                        class="language-bar"
+                        role="img"
+                        aria-label="Italian: B1"
+                      >
+                        <div class="language-fill" style="--fill: 0.5"></div>
                       </div>
                       <span class="language-level">B1</span>
                     </div>
                     <div class="language-item">
                       <span class="language-name">Spanish</span>
-                      <div class="language-bar">
-                        <div class="language-fill" style="width: 50%"></div>
+                      <div
+                        class="language-bar"
+                        role="img"
+                        aria-label="Spanish: B1"
+                      >
+                        <div class="language-fill" style="--fill: 0.5"></div>
                       </div>
                       <span class="language-level">B1</span>
                     </div>
@@ -648,15 +751,22 @@
       </div>
     </main>
 
-    <div class="lightbox" id="lightbox">
+    <div
+      class="lightbox"
+      id="lightbox"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="lightbox-title"
+      hidden
+    >
       <div class="retro-window retro-lightbox-window">
         <div class="retro-titlebar">
-          <span class="retro-titlebar-text">Image Viewer</span>
+          <span class="retro-titlebar-text" id="lightbox-title">Image Viewer</span>
           <div class="retro-titlebar-buttons">
             <button
               type="button"
               class="retro-btn-close lightbox-close"
-              aria-label="Close"
+              aria-label="Close image viewer"
             ></button>
           </div>
         </div>
@@ -669,8 +779,15 @@
     <script src="js/main.js" defer></script>
 
     <footer class="retro-taskbar">
-      <button class="retro-start-button" id="start-button">
-        <span class="retro-start-logo">&#9776;</span>
+      <button
+        type="button"
+        class="retro-start-button"
+        id="start-button"
+        aria-expanded="false"
+        aria-controls="start-menu"
+        aria-haspopup="true"
+      >
+        <span class="retro-start-logo" aria-hidden="true">&#9776;</span>
         <span class="retro-start-text">start</span>
       </button>
       <nav
@@ -679,39 +796,42 @@
         aria-label="Main navigation"
       >
         <div class="retro-start-menu-header">
-          <span class="retro-start-menu-avatar">&#128100;</span>
+          <span class="retro-start-menu-avatar" aria-hidden="true">&#128100;</span>
           <span class="retro-start-menu-user">Nikolai Klassen</span>
         </div>
         <ul>
           <li>
             <a href="#intro-window"
-              ><span class="menu-icon">&#128196;</span> Welcome</a
+              ><span class="menu-icon" aria-hidden="true">&#128196;</span> Welcome</a
             >
           </li>
           <li>
             <a href="#experience-window"
-              ><span class="menu-icon">&#128188;</span> Experience</a
+              ><span class="menu-icon" aria-hidden="true">&#128188;</span> Experience</a
             >
           </li>
           <li>
             <a href="#projects-window"
-              ><span class="menu-icon">&#128193;</span> Projects</a
+              ><span class="menu-icon" aria-hidden="true">&#128193;</span> Projects</a
             >
           </li>
           <li>
             <a href="#about-window"
-              ><span class="menu-icon">&#128187;</span> About</a
+              ><span class="menu-icon" aria-hidden="true">&#128187;</span> About</a
             >
           </li>
           <li>
             <a href="#contact-window"
-              ><span class="menu-icon">&#128231;</span> Contact</a
+              ><span class="menu-icon" aria-hidden="true">&#128231;</span> Contact</a
             >
           </li>
           <li class="menu-divider"></li>
           <li>
-            <a href="./assets/CV_2025_EN-2.pdf" target="_blank"
-              ><span class="menu-icon">&#128229;</span> Download CV</a
+            <a
+              href="./assets/CV_2025_EN-2.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              ><span class="menu-icon" aria-hidden="true">&#128229;</span> Download CV</a
             >
           </li>
         </ul>
@@ -729,7 +849,17 @@
           aria-label="GitHub Profile"
           title="GitHub - nikolaikl"
         >
-          <img src="assets/images/github.gif" alt="GitHub Icon" />
+          <svg
+            class="tray-icon"
+            viewBox="0 0 24 24"
+            width="26"
+            height="26"
+            fill="currentColor"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+          </svg>
         </a>
         <a
           href="https://www.linkedin.com/in/nikolai-k-33b9a5168/"
@@ -738,10 +868,26 @@
           aria-label="LinkedIn Profile"
           title="LinkedIn - Nikolai Klassen"
         >
-          <img src="assets/images/linkedin.gif" alt="LinkedIn Icon" />
+          <svg
+            class="tray-icon"
+            viewBox="0 0 24 24"
+            width="26"
+            height="26"
+            fill="currentColor"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.924 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" />
+          </svg>
         </a>
         <div class="retro-clock-area">
-          <span id="taskbar-clock">12:00</span>
+          <span class="retro-clock" aria-label="Local time">
+            <span id="clock-hours">12</span><span
+              class="clock-colon"
+              aria-hidden="true"
+              >:</span
+            ><span id="clock-minutes">00</span>
+          </span>
         </div>
       </div>
     </footer>
