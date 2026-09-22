@@ -23,12 +23,40 @@
   --retro-taskbar-end: #4580D8;
   --retro-close-red: #E04343;
   --retro-close-red-dark: #C23030;
+
+  /* Akzent / Headings - war 7x hart kodiert als #003399 */
+  --retro-ink: #003399;
+  --retro-ink-deep: #00246B;
+
+  /* Gedaempfter Text - beige-getoent statt Neutralgrau,
+     AA auf #ECE9D8 (6.63:1), AAA auf #FFFFFF (8.09:1) */
+  --retro-text-muted: #54503F;
+
+  /* Focus: kontextabhaengig. Gold auf #ECE9D8 waere 1.15:1 = unsichtbar. */
+  --retro-focus-on-light: var(--retro-ink);   /* 8.9:1  auf Fensterflaechen */
+  --retro-focus-on-dark: #FFD700;    /* 6.4:1  auf Taskbar/Wallpaper */
+
+  /* Inner-Titlebar: Text abgedunkelt, Flaeche aufgehellt (war 3.9:1) */
+  --retro-inner-title-text: #12294D;
+  --retro-inner-title-a: #9BB8D0;
+  --retro-inner-title-b: #C6DAEC;
+  --retro-inner-title-hover-a: #8EAAC4;
+  --retro-inner-title-hover-b: #B6CCE2;
+
+  /* Status-Badge: Bernstein statt Gruen - Optik folgt der Aussage */
+  --retro-status-bg: #FDF6E8;
+  --retro-status-border: #E0C9A0;
+  --retro-status-text: #6B4200;
+  --retro-status-dot: #B45309;
 }
 
 /* Base Styles */
 html {
   box-sizing: border-box;
-  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
 }
 
 *,
@@ -62,7 +90,6 @@ body {
   background-attachment: fixed;
   min-height: 100vh;
   padding-bottom: 60px;
-  overflow-x: hidden;
 }
 
 /* Typography */
@@ -77,7 +104,7 @@ a {
 }
 
 a:hover {
-  color: #5555FF;
+  color: #0000CC;
 }
 
 a:visited {
@@ -120,9 +147,15 @@ a:visited {
   user-select: none;
 }
 
+h2.retro-titlebar-text,
+h3.retro-inner-titlebar {
+  font-weight: bold;
+}
+
 .retro-titlebar-text {
   color: #FFFFFF;
   font-size: 16px;
+  margin: 0;
   font-weight: bold;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
   padding-left: 4px;
@@ -204,17 +237,28 @@ a:visited {
   transform: rotate(-45deg);
 }
 
-/* Window Body */
+/* Window Body
+   Grid mit 1fr/0fr statt max-height: animiert auf die echte Hoehe
+   statt auf einen geschaetzten 5000px-Deckel. */
 .retro-window-body {
   padding: 16px;
   border-top: 1px solid #3C7AE0;
   background: var(--retro-window-bg);
+  display: grid;
+  grid-template-rows: 1fr;
+}
+
+/* overflow muss in BEIDE Richtungen anliegen, sonst quillt der Inhalt
+   beim Aufklappen heraus statt aufgedeckt zu werden. */
+.retro-window-body > * {
+  min-height: 0;
+  overflow: hidden;
 }
 
 /* Inner titlebar for project cards */
 .retro-inner-titlebar {
-  background: linear-gradient(90deg, #7D9EC5 0%, #B6CCE2 100%);
-  color: #1C3D6E;
+  background: linear-gradient(90deg, var(--retro-inner-title-a) 0%, var(--retro-inner-title-b) 100%);
+  color: var(--retro-inner-title-text);
   font-weight: bold;
   font-size: 14px;
   padding: 5px 10px;
@@ -258,7 +302,7 @@ a:visited {
 #intro .name span {
   font-size: 42px;
   font-weight: bold;
-  color: #003399;
+  color: var(--retro-ink);
   display: block;
   margin: 0;
   letter-spacing: -0.5px;
@@ -284,17 +328,17 @@ a:visited {
   gap: 8px;
   margin-top: 16px;
   padding: 6px 14px;
-  background: #f0faf0;
-  border: 1px solid #a8d8a8;
+  background: var(--retro-status-bg);
+  border: 1px solid var(--retro-status-border);
   font-size: 12px;
-  color: #2d6b2d;
+  color: var(--retro-status-text);
 }
 
 .status-indicator {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #ff4500;
+  background: var(--retro-status-dot);
   animation: status-pulse 2s ease-in-out infinite;
 }
 
@@ -322,12 +366,12 @@ a:visited {
 }
 
 .experience-grid article:first-child {
-  border-left-color: #003399;
+  border-left-color: var(--retro-ink);
   background: linear-gradient(135deg, #FFFFFF 0%, #F0F4FA 100%);
 }
 
 .experience-grid h3 {
-  color: #003399;
+  color: var(--retro-ink);
   font-size: 16px;
   margin-bottom: 8px;
   line-height: 1.3;
@@ -350,7 +394,7 @@ a:visited {
 }
 
 .duration {
-  color: #666666;
+  color: var(--retro-text-muted);
   font-size: 12px;
   font-style: italic;
 }
@@ -395,7 +439,7 @@ a:visited {
 
 /* Tech Stack */
 .tech-stack h4 {
-  color: #003399;
+  color: var(--retro-ink);
   font-size: 12px;
   margin-bottom: 6px;
 }
@@ -417,6 +461,14 @@ a:visited {
 /* Project Images */
 .project-image {
   padding: 0 12px 12px;
+  /* Sehr breite Architekturdiagramme bekommen bewussten Scroll,
+     statt per overflow-x:hidden am body abgeschnitten zu werden. */
+  max-width: 100%;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 .project-image img {
@@ -473,12 +525,12 @@ a:visited {
 .contact-headline {
   font-weight: bold;
   font-size: 15px;
-  color: #003399;
+  color: var(--retro-ink);
 }
 
 .contact-hint {
   font-size: 12px;
-  color: #666;
+  color: var(--retro-text-muted);
   font-style: italic;
 }
 
@@ -507,7 +559,7 @@ a:visited {
 }
 
 .retro-button-primary:hover {
-  background: linear-gradient(180deg, #5A9FEF 0%, #3573D3 50%, #2260B0 100%);
+  background: linear-gradient(180deg, #2E6FCC 0%, #1E56A8 50%, #16428A 100%);
   color: #fff;
 }
 
@@ -542,7 +594,8 @@ a:visited {
 
 .retro-button:active {
   border-color: var(--retro-button-dark-shadow) var(--retro-button-highlight) var(--retro-button-highlight) var(--retro-button-dark-shadow);
-  padding: 5px 23px 3px 25px;
+  /* transform statt Padding-Sprung: gleicher XP-Versatz, kein Reflow */
+  transform: translate(1px, 1px);
 }
 
 .retro-button:visited {
@@ -557,7 +610,7 @@ a:visited {
 /* Retro Tabs (XP System Properties style) */
 .retro-tabs {
   display: flex;
-  padding: 0 8px;
+  padding: 0 12px;
   margin-bottom: -1px;
   position: relative;
   z-index: 1;
@@ -617,7 +670,7 @@ a:visited {
 
 .retro-groupbox-title {
   display: block;
-  color: #003399;
+  color: var(--retro-ink);
   font-size: 12px;
   font-weight: bold;
   margin-bottom: 8px;
@@ -649,7 +702,7 @@ a:visited {
 .education-degree {
   font-size: 15px;
   font-weight: bold;
-  color: #003399;
+  color: var(--retro-ink);
 }
 
 .education-school {
@@ -660,7 +713,7 @@ a:visited {
 
 .education-year {
   font-size: 12px;
-  color: #666;
+  color: var(--retro-text-muted);
   font-style: italic;
   margin-top: 2px;
 }
@@ -696,13 +749,17 @@ a:visited {
 
 .language-fill {
   height: 100%;
+  width: 100%;
   background: linear-gradient(180deg, #7DD87D 0%, #21A121 40%, #1C8A1C 100%);
-  transition: width 0.8s ease;
+  /* scaleX statt width: laeuft auf dem Compositor statt im Layout */
+  transform: scaleX(var(--fill, 1));
+  transform-origin: left center;
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .language-level {
   font-size: 11px;
-  color: #666;
+  color: var(--retro-text-muted);
   text-align: right;
 }
 
@@ -732,29 +789,28 @@ a:visited {
   background: #E8E4D8;
 }
 
-/* Skill category tinting within groupboxes */
-.retro-groupbox:nth-of-type(1) .skill-pills li {
-  border-left: 2px solid #5A82B5;
+/* Skill-Einfaerbung ueber explizite Klassen.
+   Vorher an :nth-of-type gebunden - jede Umsortierung verschob alle Farben. */
+.retro-groupbox[data-accent] .skill-pills li {
+  border-left: 2px solid var(--accent);
 }
 
-.retro-groupbox:nth-of-type(2) .skill-pills li {
-  border-left: 2px solid #7DA05A;
-}
+.retro-groupbox[data-accent="langs"]  { --accent: #5A82B5; }
+.retro-groupbox[data-accent="cloud"]  { --accent: #7DA05A; }
+.retro-groupbox[data-accent="cicd"]   { --accent: #B58A5A; }
+.retro-groupbox[data-accent="data"]   { --accent: #8A6FB0; }
+.retro-groupbox[data-accent="llm"]    { --accent: #4F9E9E; }
+.retro-groupbox[data-accent="tooling"]{ --accent: #B55A7A; }
 
-.retro-groupbox:nth-of-type(3) .skill-pills li {
-  border-left: 2px solid #B58A5A;
-}
-
-.retro-groupbox:nth-of-type(4) .skill-pills li {
-  border-left: 2px solid #8A6FB0;
-}
-
-.retro-groupbox:nth-of-type(5) .skill-pills li {
-  border-left: 2px solid #4F9E9E;
-}
-
-.retro-groupbox:nth-of-type(6) .skill-pills li {
-  border-left: 2px solid #B55A7A;
+/* No-JS-Hinweis */
+.noscript-note {
+  margin: 0;
+  padding: 10px 16px;
+  background: #FFF8DC;
+  border-bottom: 2px solid var(--retro-button-shadow);
+  font-size: 13px;
+  color: var(--retro-text);
+  text-align: center;
 }
 
 /* ============================================
@@ -788,11 +844,12 @@ a:visited {
   background: #000;
   padding: 4px;
   overflow: auto;
+  min-width: min(88vw, 640px);
 }
 
 .lightbox-img {
+  max-width: 100%;
   max-height: 85vh;
-  min-width: min(94vw, 800px);
   object-fit: contain;
 }
 
@@ -827,12 +884,12 @@ a:visited {
 /* Start Button */
 .retro-start-button {
   background: linear-gradient(180deg,
-    #3C9C3C 0%,
-    #2D8E2D 15%,
-    #21A121 30%,
-    #21A121 70%,
-    #1C8A1C 85%,
-    #167016 100%);
+    #1F9420 0%,
+    #1C8A1C 15%,
+    #1A861A 30%,
+    #1A861A 70%,
+    #167016 85%,
+    #12600F 100%);
   border: none;
   border-radius: 0 8px 8px 0;
   color: white;
@@ -857,28 +914,30 @@ a:visited {
   content: "";
   position: absolute;
   top: 0;
-  left: -100%;
+  left: 0;
   width: 60%;
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
   border-radius: inherit;
   animation: start-shine 4s ease-in-out infinite;
   pointer-events: none;
+  will-change: transform;
 }
 
+/* transform statt left: kein Layout pro Frame */
 @keyframes start-shine {
-  0%, 80%, 100% { left: -100%; }
-  40% { left: 120%; }
+  0%, 80%, 100% { transform: translateX(-180%); }
+  40% { transform: translateX(200%); }
 }
 
 .retro-start-button:hover {
   background: linear-gradient(180deg,
-    #4AAF4A 0%,
-    #3A9E3A 15%,
-    #2DB02D 30%,
-    #2DB02D 70%,
-    #259725 85%,
-    #1E7E1E 100%);
+    #167016 0%,
+    #146814 15%,
+    #12600F 30%,
+    #12600F 70%,
+    #105A0D 85%,
+    #0E4F0C 100%);
 }
 
 .retro-start-button:active {
@@ -1031,10 +1090,10 @@ a:visited {
 
 .retro-taskbar-btn:hover {
   background: linear-gradient(180deg,
-    #4A82E0 0%,
-    #3A6FC5 40%,
-    #3060B0 60%,
-    #3A6CC5 100%);
+    #2E63B8 0%,
+    #27559F 40%,
+    #224B92 60%,
+    #27529F 100%);
 }
 
 /* System Tray */
@@ -1044,25 +1103,29 @@ a:visited {
   gap: 8px;
   margin-left: auto;
   background: linear-gradient(180deg,
-    #1290E9 0%,
-    #0F6FBE 30%,
-    #0D5CA4 60%,
-    #0F6FBE 100%);
+    #0B62A8 0%,
+    #0A5794 30%,
+    #084E86 60%,
+    #0A5794 100%);
   padding: 0 10px;
   height: 100%;
   border-left: 1px solid #1560B0;
 }
 
-.retro-system-tray img {
-  width: 40px;
-  height: 40px;
-  transition: transform 0.15s ease, filter 0.15s ease;
+.retro-system-tray .tray-icon {
+  display: block;
+  width: 26px;
+  height: 26px;
+  color: #fff;
+  transition: transform 0.15s ease;
 }
 
 .retro-system-tray a {
   display: flex;
   align-items: center;
-  padding: 2px;
+  justify-content: center;
+  /* 26px Icon + 2x7px Padding = 40px Touch-Target */
+  padding: 7px;
   border-radius: 3px;
   transition: background 0.15s ease;
 }
@@ -1071,9 +1134,18 @@ a:visited {
   background: rgba(255, 255, 255, 0.15);
 }
 
-.retro-system-tray a:hover img {
+.retro-system-tray a:hover .tray-icon {
   transform: scale(1.15);
-  filter: brightness(1.2);
+}
+
+/* Blinkender Doppelpunkt per CSS statt setInterval im Sekundentakt */
+.clock-colon {
+  animation: clock-blink 2s step-end infinite;
+}
+
+@keyframes clock-blink {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0.15; }
 }
 
 .retro-clock-area {
@@ -1209,16 +1281,22 @@ a:visited {
     font-size: 26px;
   }
 
-  .retro-system-tray img {
-    width: 34px;
-    height: 34px;
+  .retro-system-tray .tray-icon {
+    width: 22px;
+    height: 22px;
   }
 }
 
 /* ============================================
    Boot Screen
    ============================================ */
+/* Ohne JS gar nicht erst anzeigen - sonst bleibt ein schwarzer
+   Vollbild-Layer stehen und die Seite ist unbenutzbar. */
 .retro-boot-screen {
+  display: none;
+}
+
+.js .retro-boot-screen {
   position: fixed;
   inset: 0;
   z-index: 99999;
@@ -1286,6 +1364,7 @@ a:visited {
   display: flex;
   gap: 3px;
   animation: retro-boot-slide 1.5s ease-in-out infinite;
+  will-change: transform;
 }
 
 .retro-boot-bar span {
@@ -1304,21 +1383,23 @@ a:visited {
 
 /* ============================================
    Window Animations
+   ------------------------------------------------
+   Sichtbarkeit ist die Grundlage, nicht der Effekt:
+   ohne .js (kein JavaScript) sind alle Fenster sofort da.
    ============================================ */
 .retro-window {
-  opacity: 0;
-  transform: scale(0.95) translateY(10px);
   transition: opacity 0.4s ease, transform 0.4s ease, box-shadow 0.3s ease;
 }
 
-.retro-lightbox-window {
-  opacity: 1;
-  transform: none;
+.js .retro-window {
+  opacity: 0;
+  transform: scale(0.98) translateY(10px);
 }
 
-.retro-window.visible {
+.js .retro-window.visible,
+.js .retro-lightbox-window {
   opacity: 1;
-  transform: scale(1) translateY(0);
+  transform: none;
 }
 
 .retro-window:hover {
@@ -1329,22 +1410,27 @@ a:visited {
 
 /* Window minimized state */
 .retro-window.minimized {
-  transform: scale(0.95) translateY(0);
   overflow: hidden;
 }
 
-.retro-window.minimized .retro-window-body {
-  max-height: 0;
-  padding: 0 12px;
-  opacity: 0;
-  transition: max-height 0.35s ease, padding 0.35s ease, opacity 0.2s ease;
+.retro-window .retro-window-body {
+  opacity: 1;
+  transition: grid-template-rows 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              padding 0.35s ease,
+              opacity 0.3s ease 0.1s;
 }
 
-.retro-window:not(.minimized) .retro-window-body {
-  max-height: 5000px;
-  opacity: 1;
-  transition: max-height 0.5s ease, padding 0.35s ease, opacity 0.3s ease 0.1s;
+.retro-window.minimized .retro-window-body {
+  grid-template-rows: 0fr;
+  padding-top: 0;
+  padding-bottom: 0;
+  opacity: 0;
+  transition: grid-template-rows 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              padding 0.35s ease,
+              opacity 0.2s ease;
 }
+
+
 
 /* Titlebar buttons interactive */
 .retro-btn-minimize:hover,
@@ -1366,8 +1452,13 @@ a:visited {
 /* ============================================
    Desktop Icons
    ============================================ */
-.desktop-icons-hidden {
+.js .retro-desktop-icons {
   opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.js .retro-desktop-icons.ready {
+  opacity: 1;
 }
 
 .retro-desktop-icons {
@@ -1392,7 +1483,6 @@ a:visited {
   text-decoration: none;
   color: #fff;
   font-size: 12px;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
   font-family: "Tahoma", sans-serif;
   min-width: 80px;
   text-align: center;
@@ -1425,6 +1515,14 @@ a:visited {
   transform: scale(1.08);
 }
 
+/* Plakette hinter dem Label: Weiss auf dem Wallpaper-Verlauf lag je nach
+   Scrollposition bei 1.64-4.22:1. Mit rgba(0,26,69,.7) sind es >= 7.5:1. */
+.retro-desktop-icon span {
+  background: rgba(0, 26, 69, 0.7);
+  padding: 2px 8px;
+  border-radius: 2px;
+}
+
 /* ============================================
    Project Card Hover
    ============================================ */
@@ -1437,7 +1535,7 @@ a:visited {
 }
 
 .project-card:hover .retro-inner-titlebar {
-  background: linear-gradient(90deg, #5A82B5 0%, #A0BFD8 100%);
+  background: linear-gradient(90deg, var(--retro-inner-title-hover-a) 0%, var(--retro-inner-title-hover-b) 100%);
 }
 
 /* ============================================
@@ -1452,52 +1550,56 @@ a:visited {
    Better link styling
    ============================================ */
 #intro a {
-  color: #0055E5;
+  color: var(--retro-blue);
   font-weight: bold;
   transition: color 0.15s ease;
 }
 
 #intro a:hover {
-  color: #3388FF;
+  color: var(--retro-ink-deep);
 }
 
 #intro a:visited {
-  color: #0055E5;
+  color: var(--retro-blue);
 }
 
 /* ============================================
    Focus States (Accessibility)
+   ------------------------------------------------
+   Gold auf hellem Fenstergrund waere 1.15:1 und damit
+   unsichtbar. Darum zwei Varianten plus ein heller
+   Gegenring, damit der Fokus auf jedem Untergrund traegt.
    ============================================ */
+
+/* Auf hellen Flaechen (Fensterinhalt): dunkles Blau, 8.9:1 */
+.retro-button:focus-visible,
+.retro-tab:focus-visible,
+.project-image img:focus-visible,
+.clippy-close:focus-visible,
+.retro-start-menu a:focus-visible {
+  outline: 3px solid var(--retro-focus-on-light);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.9);
+}
+
+/* Auf dunklen Flaechen (Taskbar, Wallpaper): Gold, 6.4:1 */
 .retro-desktop-icon:focus-visible,
 .retro-taskbar-btn:focus-visible,
 .retro-start-button:focus-visible,
-.retro-button:focus-visible {
-  outline: 2px solid #FFD700;
-  outline-offset: 2px;
-}
-
-.retro-btn-minimize:focus-visible,
-.retro-btn-maximize:focus-visible,
-.retro-btn-close:focus-visible {
-  outline: 2px solid #FFD700;
-  outline-offset: 1px;
-}
-
 .retro-system-tray a:focus-visible {
-  outline: 2px solid #FFD700;
+  outline: 3px solid var(--retro-focus-on-dark);
   outline-offset: 2px;
+  box-shadow: 0 0 0 5px rgba(0, 26, 69, 0.85);
   border-radius: 3px;
 }
 
-.project-image img:focus-visible {
-  outline: 2px solid #FFD700;
+/* Titlebar-Buttons sitzen auf blauem Verlauf */
+.retro-btn-minimize:focus-visible,
+.retro-btn-maximize:focus-visible,
+.retro-btn-close:focus-visible {
+  outline: 2px solid var(--retro-focus-on-dark);
   outline-offset: 2px;
-}
-
-.retro-start-menu a:focus-visible {
-  background: #2F71CD;
-  color: white;
-  outline: none;
+  box-shadow: 0 0 0 4px rgba(0, 26, 69, 0.75);
 }
 
 /* Accessibility: respect reduced motion */
@@ -1506,10 +1608,33 @@ a:visited {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 
-  .retro-boot-screen {
-    transition: none;
+  /* Boot-Screen wird zusaetzlich in JS uebersprungen (matchMedia),
+     hier der CSS-seitige Sicherheitsnetz-Teil. */
+  .js .retro-boot-screen {
+    display: none;
+  }
+
+  .js .retro-window {
+    opacity: 1;
+    transform: none;
+  }
+
+  .js .retro-desktop-icons {
+    opacity: 1;
+  }
+
+  /* Dauerlaeufer ohne Nutzen komplett stoppen */
+  .retro-start-button::after,
+  .status-indicator,
+  .intro-cursor {
+    animation: none !important;
+  }
+
+  .retro-start-button::after {
+    display: none;
   }
 }
 
@@ -1602,7 +1727,7 @@ a:visited {
 
 .clippy-hint {
   font-size: 11px;
-  color: #666;
+  color: var(--retro-text-muted);
 }
 
 .clippy-hint kbd {
@@ -1617,14 +1742,20 @@ a:visited {
 
 .clippy-close {
   position: absolute;
-  top: 4px;
-  right: 6px;
+  top: 2px;
+  right: 2px;
   background: none;
   border: none;
   font-size: 16px;
   cursor: pointer;
-  color: #999;
+  color: var(--retro-text-muted);
   line-height: 1;
+  /* 24x24 Mindestflaeche nach WCAG 2.5.8 */
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 0;
 }
 
@@ -1653,8 +1784,4 @@ a:visited {
   80% { transform: scale(1) translateY(0) translateX(2px); }
 }
 
-/* Focus states for new elements */
-.retro-tab:focus-visible {
-  outline: 2px solid #FFD700;
-  outline-offset: 1px;
-}
+
