@@ -5,9 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Nikolai Klassen - Machine Learning Engineer"
+      content="Nikolai Klassen - Machine Learning / MLOps Engineer in Berlin, building LLM and voice AI platforms on AWS."
     />
-    <title>About Me</title>
+    <meta name="theme-color" content="#0055E5" />
+    <title>Nikolai Klassen &ndash; ML / MLOps Engineer</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='2' fill='%230055E5'/%3E%3Ctext x='8' y='12' font-family='Tahoma,sans-serif' font-size='10' font-weight='bold' fill='%23fff' text-anchor='middle'%3EN%3C/text%3E%3C/svg%3E"
+    />
     <link rel="stylesheet" href="css/style.css" />
   </head>
 
@@ -48,7 +53,7 @@
         class="retro-desktop-icon"
         target="_blank"
       >
-        <div class="retro-desktop-icon-img">&#128462;</div>
+        <div class="retro-desktop-icon-img">&#128229;</div>
         <span>CV.pdf</span>
       </a>
     </nav>
@@ -84,21 +89,24 @@
                 ><span class="intro-cursor">_</span>
               </div>
               <p class="name"><span>Nikolai Klassen</span></p>
-              <p class="intro-role">ML Platform Engineer</p>
+              <p class="intro-role">
+                Machine Learning Engineer / MLOps Engineer
+              </p>
               <p>
-                Currently building a generative AI (Voice and text) platform and
-                maintaining it on AWS at
+                Currently building an agentic voice and text AI platform for
+                customer service and running it on AWS at
                 <a
                   href="https://www.dkb.de"
                   target="_blank"
                   rel="noopener noreferrer"
                   >Deutsche Kreditbank AG</a
-                >. Previously ML Engineer / Tech Lead for a Project
+                >. Previously AI Engineer and Tech Lead for the
+                <em>Renate</em> GenAI platform at
                 <a
-                  href="https://www.deutsche-rentenverischerung.de"
+                  href="https://www.deutsche-rentenversicherung.de"
                   target="_blank"
                   rel="noopener noreferrer"
-                  >DRV-Bund</a
+                  >Deutsche Rentenversicherung Bund</a
                 >.
               </p>
               <div class="intro-status">
@@ -141,61 +149,58 @@
                 <p class="duration">May 2026 - Present</p>
                 <ul>
                   <li>
-                    Developing and evolving a voice-based LLM platform in
-                    customer service.
+                    Developing an agentic voice platform for German-speaking
+                    customer service in a regulated bank, shipped via GitOps
+                    CI/CD on AWS (Kubernetes, Flux, Helm, Terraform) with daily
+                    releases, each tested in isolated review namespaces.
                   </li>
                   <li>
-                    Building and governing reproducible data pipelines with
-                    snapshot, lineage, and split-manifest concepts for traceable
-                    ML experiments.
+                    Leading ticket creation, backlog refinement, and
+                    specification in Scrum for a team of 5, turning the
+                    developer roadmap into scoped work packages that keep a
+                    steady release cadence.
                   </li>
                   <li>
-                    Building Grafana dashboards for accuracy, data quality,
-                    freshness, and queryability.
+                    Setting up LLM monitoring and evaluation with self-hosted
+                    Langfuse and Grafana dashboards for accuracy, data quality,
+                    and queryability, making model and data degradation visible
+                    in production.
                   </li>
                   <li>
-                    Hardening integrations through schema validation, error
-                    handling, retry logic, and preservation of valid partial
-                    results.
-                  </li>
-                  <li>
-                    Developing and reviewing AWS/Terraform infrastructure (IAM,
-                    KMS, S3, Lake Formation, EC2, RDS, Transit Gateway, security
-                    groups) and presenting ADRs.
-                  </li>
-                  <li>
-                    Setting up LLM monitoring, evaluation tooling, and CI/CD for
-                    reliable AI services on AWS using Kubernetes / Flux / Helm /
-                    Terraform.
+                    Developing and reviewing AWS infrastructure in Terraform
+                    (IAM, KMS, S3, Lake Formation, EC2, RDS, Transit Gateway,
+                    security groups) within the bank's network and encryption
+                    boundaries, documented and presented as RFCs/ADRs.
                   </li>
                 </ul>
               </article>
               <article>
                 <h3>
-                  Machine Learning Engineer / Tech Lead at Deutsche
+                  AI Engineer / Tech Lead for Renate at Deutsche
                   Rentenversicherung Bund
                 </h3>
                 <p class="duration">November 2024 - April 2026</p>
                 <ul>
                   <li>
-                    Leading development of a multilingual GenAI platform
-                    (TypeScript/Python) on AWS, targeting ~20k requests/hour.
+                    Led the development of a serverless agentic GenAI platform
+                    (frontend and backend) on AWS, shared by multiple teams
+                    building their own LLM workflows and serving ~20,000
+                    requests per hour.
                   </li>
                   <li>
-                    Built RAG pipelines and ETL workflows transforming
-                    unstructured data for LLM ingestion.
+                    Defined SLAs, monitoring, and runbooks for a citizen-facing
+                    service, with accuracy and reliability tracked continuously
+                    and operations documented.
                   </li>
                   <li>
-                    Set up LLM monitoring, evaluation tooling, and CI/CD for
-                    reliable AI services.
+                    Designed scalable RAG and ETL pipelines turning large
+                    volumes of unstructured text into structured data for LLM
+                    ingestion, streamlining the work of 4 colleagues.
                   </li>
                   <li>
-                    Designed hybrid AWS/on-premise architecture; drove RFC and
-                    ADR adoption.
-                  </li>
-                  <li>
-                    Mentoring junior data scientists across LLM and classical ML
-                    projects.
+                    Shaped a hybrid architecture with enterprise architects to
+                    connect AWS with on-premise systems, governed via the RFCs
+                    and ADRs I introduced.
                   </li>
                 </ul>
               </article>
@@ -204,20 +209,22 @@
                 <p class="duration">October 2022 - October 2024</p>
                 <ul>
                   <li>
-                    ML-powered backend services with 99% availability for 20k
-                    daily orders.
+                    Developed and maintained Python and Kotlin backend services
+                    on the order path, carrying 20,000 orders per day with
+                    99.99% availability.
                   </li>
                   <li>
-                    Improved classification models, reducing defaults and fraud
-                    by 20%.
+                    Designed CI/CD pipelines with GitHub Actions, Jenkins, and
+                    Kubernetes for ML-powered systems, so every model change was
+                    tested and deployed automatically.
                   </li>
                   <li>
-                    Real-time event pipelines with Kafka and Flink; CI/CD with
-                    GitHub Actions and Kubernetes.
+                    Improved data processing for credit-default classification
+                    models, achieving a 20% reduction in defaults.
                   </li>
                   <li>
-                    Maintained data platform feature store across multiple
-                    teams.
+                    Built real-time event pipelines with Apache Kafka and Apache
+                    Flink across multiple source systems.
                   </li>
                 </ul>
               </article>
@@ -380,12 +387,18 @@
               <article class="project-card">
                 <div class="retro-inner-titlebar">Personal Website</div>
                 <div class="project-content">
-                  <p class="project-description">This website here!</p>
+                  <p class="project-description">
+                    This website here! A retro desktop UI built with vanilla
+                    HTML, CSS, and JavaScript - no frameworks, no build step,
+                    deployed via GitHub Pages.
+                  </p>
                   <div class="tech-stack">
                     <h4>Tech Stack</h4>
                     <ul>
                       <li>HTML</li>
                       <li>CSS</li>
+                      <li>JavaScript</li>
+                      <li>GitHub Pages</li>
                     </ul>
                   </div>
                 </div>
@@ -487,50 +500,88 @@
             </div>
             <div class="retro-tab-body">
               <div class="retro-tab-panel active" id="tab-skills">
-                <div class="retro-groupbox">
-                  <legend>Programming Languages</legend>
-                  <ul class="skill-pills">
-                    <li>Python</li>
-                    <li>SQL</li>
-                    <li>JavaScript</li>
-                    <li>TypeScript</li>
-                    <li>Java</li>
-                    <li>Kotlin</li>
-                    <li>Go</li>
-                    <li>HCL</li>
-                  </ul>
-                </div>
-                <div class="retro-groupbox">
-                  <legend>Technologies</legend>
-                  <ul class="skill-pills">
-                    <li>Apache Kafka</li>
-                    <li>Apache Flink</li>
-                    <li>TensorFlow</li>
-                    <li>PyTorch</li>
-                    <li>Scikit-learn</li>
-                    <li>Pandas</li>
-                    <li>FastAPI</li>
-                    <li>AWS</li>
-                    <li>Kubernetes</li>
-                    <li>ArgoCD</li>
-                    <li>Snowflake</li>
-                    <li>Jenkins</li>
-                  </ul>
-                </div>
-                <div class="retro-groupbox">
-                  <legend>Expertise</legend>
-                  <ul class="skill-pills">
-                    <li>Machine Learning</li>
-                    <li>LLMOps/MLOps</li>
-                    <li>Test Driven Development</li>
-                    <li>DevOps</li>
-                    <li>Data Engineering</li>
-                  </ul>
+                <div class="skills-grid">
+                  <div class="retro-groupbox">
+                    <span class="retro-groupbox-title"
+                      >Programming Languages</span
+                    >
+                    <ul class="skill-pills">
+                      <li>Python</li>
+                      <li>SQL</li>
+                      <li>JavaScript</li>
+                      <li>TypeScript</li>
+                      <li>Java</li>
+                      <li>Kotlin</li>
+                      <li>Go</li>
+                      <li>HCL</li>
+                    </ul>
+                  </div>
+                  <div class="retro-groupbox">
+                    <span class="retro-groupbox-title"
+                      >Cloud &amp; Infrastructure</span
+                    >
+                    <ul class="skill-pills">
+                      <li>AWS</li>
+                      <li>Bedrock</li>
+                      <li>Lambda</li>
+                      <li>Lake Formation</li>
+                      <li>Docker</li>
+                      <li>Kubernetes</li>
+                      <li>Helm</li>
+                      <li>Flux</li>
+                      <li>Terraform</li>
+                      <li>Proxmox</li>
+                    </ul>
+                  </div>
+                  <div class="retro-groupbox">
+                    <span class="retro-groupbox-title"
+                      >CI/CD &amp; Observability</span
+                    >
+                    <ul class="skill-pills">
+                      <li>GitHub Actions</li>
+                      <li>Jenkins</li>
+                      <li>Grafana</li>
+                      <li>ELK Stack</li>
+                      <li>Langfuse</li>
+                    </ul>
+                  </div>
+                  <div class="retro-groupbox">
+                    <span class="retro-groupbox-title">Data &amp; ML</span>
+                    <ul class="skill-pills">
+                      <li>Apache Kafka</li>
+                      <li>Apache Flink</li>
+                      <li>Snowflake</li>
+                      <li>Pandas</li>
+                      <li>TensorFlow</li>
+                      <li>PyTorch</li>
+                      <li>scikit-learn</li>
+                      <li>XGBoost</li>
+                    </ul>
+                  </div>
+                  <div class="retro-groupbox">
+                    <span class="retro-groupbox-title">LLM &amp; GenAI</span>
+                    <ul class="skill-pills">
+                      <li>RAG</li>
+                      <li>Agentic Workflows</li>
+                      <li>Voice AI</li>
+                      <li>Pydantic AI</li>
+                      <li>n8n</li>
+                    </ul>
+                  </div>
+                  <div class="retro-groupbox">
+                    <span class="retro-groupbox-title">Python Tooling</span>
+                    <ul class="skill-pills">
+                      <li>uv</li>
+                      <li>ruff</li>
+                      <li>pytest</li>
+                      <li>FastAPI</li>
+                    </ul>
+                  </div>
                 </div>
               </div>
               <div class="retro-tab-panel" id="tab-education">
                 <div class="retro-groupbox">
-                  <legend>Degrees</legend>
+                  <span class="retro-groupbox-title">Degrees</span>
                   <div class="education-entry">
                     <div class="education-degree">M.Sc. Data Science</div>
                     <div class="education-school">
@@ -551,7 +602,7 @@
               </div>
               <div class="retro-tab-panel" id="tab-languages">
                 <div class="retro-groupbox">
-                  <legend>Spoken Languages</legend>
+                  <span class="retro-groupbox-title">Spoken Languages</span>
                   <div class="language-bars">
                     <div class="language-item">
                       <span class="language-name">German</span>
@@ -660,7 +711,7 @@
           <li class="menu-divider"></li>
           <li>
             <a href="./assets/CV_2025_EN-2.pdf" target="_blank"
-              ><span class="menu-icon">&#128462;</span> Download CV</a
+              ><span class="menu-icon">&#128229;</span> Download CV</a
             >
           </li>
         </ul>

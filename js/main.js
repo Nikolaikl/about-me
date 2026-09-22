@@ -9,7 +9,7 @@
   if (bootText) {
     var bootMessages = [
       'Professional Edition',
-      'Portfolio Build 2026.03',
+      'Portfolio Build 2026.09',
       'Loading awesome things...',
       'Preparing pixels...',
       'Initializing career.exe...'
@@ -228,9 +228,9 @@
     });
   }
 
-  // Desktop icon click to un-minimize
-  document.querySelectorAll('.retro-desktop-icon[href^="#"]').forEach(function (icon) {
-    icon.addEventListener('click', function () {
+  // Any in-page link (desktop icon, taskbar, start menu) un-minimizes its window
+  document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+    link.addEventListener('click', function () {
       var targetId = this.getAttribute('href').substring(1);
       var targetWin = document.getElementById(targetId);
       if (targetWin && targetWin.classList.contains('minimized')) {
@@ -238,6 +238,44 @@
       }
     });
   });
+
+  // Taskbar scrollspy - highlight the window currently in view
+  var taskbarBtns = document.querySelectorAll('.retro-taskbar-btn');
+  if (taskbarBtns.length && 'IntersectionObserver' in window) {
+    var btnByWindowId = {};
+    taskbarBtns.forEach(function (btn) {
+      btnByWindowId[btn.getAttribute('href').substring(1)] = btn;
+    });
+
+    var visibleRatios = {};
+    var spy = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          visibleRatios[entry.target.id] = entry.isIntersecting
+            ? entry.intersectionRatio
+            : 0;
+        });
+
+        var bestId = null;
+        Object.keys(visibleRatios).forEach(function (id) {
+          if (visibleRatios[id] > 0 && (bestId === null || visibleRatios[id] > visibleRatios[bestId])) {
+            bestId = id;
+          }
+        });
+
+        if (!bestId) return;
+        taskbarBtns.forEach(function (btn) {
+          btn.classList.toggle('active', btn === btnByWindowId[bestId]);
+        });
+      },
+      { threshold: [0, 0.25, 0.5, 0.75, 1] }
+    );
+
+    Object.keys(btnByWindowId).forEach(function (id) {
+      var win = document.getElementById(id);
+      if (win) spy.observe(win);
+    });
+  }
 
   // Escape to close lightbox
   document.addEventListener('keydown', function (e) {

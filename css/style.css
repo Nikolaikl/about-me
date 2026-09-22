@@ -615,12 +615,24 @@ a:visited {
   margin-bottom: 0;
 }
 
-.retro-groupbox legend {
+.retro-groupbox-title {
+  display: block;
   color: #003399;
   font-size: 12px;
   font-weight: bold;
-  padding: 0 6px;
-  margin-left: 8px;
+  margin-bottom: 8px;
+}
+
+/* Skills categories in a responsive multi-column layout */
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+.skills-grid .retro-groupbox {
+  margin-bottom: 0;
 }
 
 /* Education entries */
@@ -731,6 +743,18 @@ a:visited {
 
 .retro-groupbox:nth-of-type(3) .skill-pills li {
   border-left: 2px solid #B58A5A;
+}
+
+.retro-groupbox:nth-of-type(4) .skill-pills li {
+  border-left: 2px solid #8A6FB0;
+}
+
+.retro-groupbox:nth-of-type(5) .skill-pills li {
+  border-left: 2px solid #4F9E9E;
+}
+
+.retro-groupbox:nth-of-type(6) .skill-pills li {
+  border-left: 2px solid #B55A7A;
 }
 
 /* ============================================
@@ -1079,6 +1103,10 @@ a:visited {
   }
 
   .experience-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .skills-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
