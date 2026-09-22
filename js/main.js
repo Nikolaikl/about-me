@@ -1,78 +1,141 @@
 (function () {
-  // Boot screen
+  'use strict';
+
+  var reduceMotion =
+    window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // sessionStorage kann in privaten Fenstern werfen - nie ungeschuetzt nutzen.
+  function store(key, value) {
+    try {
+      if (value === undefined) return sessionStorage.getItem(key);
+      sessionStorage.setItem(key, value);
+    } catch (e) {
+      return null;
+    }
+  }
+
   var bootScreen = document.getElementById('boot-screen');
   var desktopIcons = document.getElementById('desktop-icons');
   var windows = document.querySelectorAll('main .retro-window');
 
-  // Randomize boot subtitle
-  var bootText = bootScreen.querySelector('.retro-boot-text');
-  if (bootText) {
-    var bootMessages = [
-      'Professional Edition',
-      'Portfolio Build 2026.09',
-      'Loading awesome things...',
-      'Preparing pixels...',
-      'Initializing career.exe...'
-    ];
-    bootText.textContent = bootMessages[Math.floor(Math.random() * bootMessages.length)];
-  }
+  // ==========================================================
+  // Reveal
+  // Sichtbarkeit ist garantiert, der Effekt ist die Zugabe.
+  // ==========================================================
+  var revealed = false;
 
-  setTimeout(function () {
-    bootScreen.classList.add('fade-out');
-    setTimeout(function () {
-      bootScreen.style.display = 'none';
+  function revealAll(animated) {
+    if (revealed) return;
+    revealed = true;
 
-      // Staggered desktop icon appearance
-      var icons = desktopIcons.querySelectorAll('.retro-desktop-icon');
-      desktopIcons.classList.remove('desktop-icons-hidden');
-      desktopIcons.style.transition = 'opacity 0.4s ease';
-      icons.forEach(function (icon, i) {
+    if (bootScreen) bootScreen.style.display = 'none';
+    if (desktopIcons) desktopIcons.classList.add('ready');
+
+    if (!animated) {
+      windows.forEach(function (win) {
+        win.classList.add('visible');
+      });
+      typeIntroText(false);
+      return;
+    }
+
+    if (desktopIcons) {
+      desktopIcons.querySelectorAll('.retro-desktop-icon').forEach(function (icon, i) {
         icon.style.opacity = '0';
         icon.style.transform = 'translateY(8px)';
         icon.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
         setTimeout(function () {
           icon.style.opacity = '1';
           icon.style.transform = 'translateY(0)';
-        }, i * 80);
+        }, i * 70);
       });
+    }
 
-      windows.forEach(function (win, i) {
-        setTimeout(function () {
-          win.classList.add('visible');
-        }, i * 150);
-      });
-
-      // Start typing effect after windows appear
+    windows.forEach(function (win, i) {
       setTimeout(function () {
-        typeIntroText();
-      }, windows.length * 150 + 300);
+        win.classList.add('visible');
+      }, i * 110);
+    });
 
-      // Show Clippy after a delay
+    setTimeout(function () {
+      typeIntroText(true);
+    }, windows.length * 110 + 200);
+
+    setTimeout(function () {
+      showClippy();
+    }, windows.length * 110 + 1800);
+  }
+
+  // Sicherheitsnetz: falls unten etwas wirft, ist die Seite trotzdem da.
+  setTimeout(function () {
+    revealAll(false);
+  }, 4000);
+
+  var skipBoot = reduceMotion || store('boot-seen') === '1';
+
+  if (skipBoot || !bootScreen) {
+    revealAll(false);
+  } else {
+    var bootText = bootScreen.querySelector('.retro-boot-text');
+    if (bootText) {
+      var bootMessages = [
+        'Professional Edition',
+        'Portfolio Build 2026.09',
+        'Loading awesome things...',
+        'Preparing pixels...',
+        'Initializing career.exe...'
+      ];
+      bootText.textContent =
+        bootMessages[Math.floor(Math.random() * bootMessages.length)];
+    }
+
+    var bootTimer = setTimeout(finishBoot, 900);
+
+    // Jeder Klick oder Tastendruck bricht den Boot-Screen sofort ab.
+    function skipNow() {
+      clearTimeout(bootTimer);
+      finishBoot();
+    }
+    bootScreen.addEventListener('click', skipNow);
+    document.addEventListener('keydown', skipNow, { once: true });
+
+    function finishBoot() {
+      bootScreen.removeEventListener('click', skipNow);
+      store('boot-seen', '1');
+      bootScreen.classList.add('fade-out');
       setTimeout(function () {
-        showClippy();
-      }, windows.length * 150 + 2000);
-    }, 600);
-  }, 1400);
+        revealAll(true);
+      }, 450);
+    }
+  }
 
-  // Typing effect for intro
-  function typeIntroText() {
+  // ==========================================================
+  // Tipp-Effekt
+  // ==========================================================
+  function typeIntroText(animated) {
     var typedEl = document.getElementById('intro-typed');
-    if (!typedEl) return;
+    if (!typedEl || typedEl.textContent) return;
     var text = 'whoami';
+    if (!animated) {
+      typedEl.textContent = text;
+      return;
+    }
     var i = 0;
-    function typeChar() {
+    (function typeChar() {
       if (i < text.length) {
         typedEl.textContent += text[i];
         i++;
         setTimeout(typeChar, 80 + Math.random() * 60);
       }
-    }
-    typeChar();
+    })();
   }
 
-  // Clippy helper Easter egg
+  // ==========================================================
+  // Clippy
+  // ==========================================================
   function showClippy() {
-    if (sessionStorage.getItem('clippy-dismissed')) return;
+    if (reduceMotion || store('clippy-dismissed')) return;
 
     var hour = new Date().getHours();
     var greeting;
@@ -85,161 +148,225 @@
     clippy.className = 'clippy-helper';
     clippy.innerHTML =
       '<div class="clippy-bubble">' +
-      '<button class="clippy-close" aria-label="Close">&times;</button>' +
-      '<p>' + greeting + 'It looks like you\'re checking out a portfolio!</p>' +
+      '<button type="button" class="clippy-close" aria-label="Dismiss assistant">&times;</button>' +
+      '<p>' + greeting + "It looks like you're checking out a portfolio!</p>" +
       '</div>' +
-      '<div class="clippy-character">&#128206;</div>';
+      '<div class="clippy-character" aria-hidden="true">&#128206;</div>';
     document.body.appendChild(clippy);
 
-    // Animate in
     requestAnimationFrame(function () {
       clippy.classList.add('visible');
     });
 
+    var autoTimer;
     function dismissClippy() {
+      clearTimeout(autoTimer);
       clippy.classList.remove('visible');
-      setTimeout(function () { clippy.remove(); }, 300);
-      sessionStorage.setItem('clippy-dismissed', '1');
+      setTimeout(function () {
+        clippy.remove();
+      }, 300);
+      store('clippy-dismissed', '1');
     }
 
     clippy.querySelector('.clippy-close').addEventListener('click', dismissClippy);
     clippy.querySelector('.clippy-character').addEventListener('click', dismissClippy);
-
-    // Auto-dismiss after 8 seconds
-    setTimeout(function () {
-      if (document.body.contains(clippy)) dismissClippy();
-    }, 8000);
+    autoTimer = setTimeout(dismissClippy, 8000);
   }
 
-  // Lightbox
+  // ==========================================================
+  // Lightbox - echter modaler Dialog
+  // ==========================================================
   var lightbox = document.getElementById('lightbox');
   var lightboxImg = document.getElementById('lightbox-img');
+  var lightboxCloseBtn = lightbox && lightbox.querySelector('.lightbox-close');
+  var lastFocused = null;
 
-  function openLightbox(src, alt) {
+  function openLightbox(src, alt, trigger) {
+    if (!lightbox) return;
+    lastFocused = trigger || document.activeElement;
     lightboxImg.src = src;
-    lightboxImg.alt = alt;
+    lightboxImg.alt = alt || '';
+    lightbox.hidden = false;
     lightbox.classList.add('active');
+    if (lightboxCloseBtn) lightboxCloseBtn.focus();
   }
 
   function closeLightbox() {
+    if (!lightbox || lightbox.hidden) return;
     lightbox.classList.remove('active');
+    lightbox.hidden = true;
+    lightboxImg.removeAttribute('src');
+    // Fokus zurueck auf das ausloesende Bild.
+    if (lastFocused && document.contains(lastFocused)) lastFocused.focus();
+    lastFocused = null;
   }
 
-  document.querySelectorAll('.project-image img').forEach(function (img) {
-    img.addEventListener('click', function () {
-      openLightbox(this.src, this.alt);
+  if (lightbox) {
+    document.querySelectorAll('.project-image img').forEach(function (img) {
+      img.setAttribute('tabindex', '0');
+      img.setAttribute('role', 'button');
+      img.title = 'Open larger view';
+      img.addEventListener('click', function () {
+        openLightbox(this.src, this.alt, this);
+      });
+      img.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openLightbox(this.src, this.alt, this);
+        }
+      });
     });
-    img.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') {
+
+    lightbox.addEventListener('click', function (e) {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.querySelectorAll('.lightbox-close').forEach(function (btn) {
+      btn.addEventListener('click', closeLightbox);
+    });
+
+    // Fokusfalle: im offenen Dialog bleibt Tab im Dialog.
+    lightbox.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
         e.preventDefault();
-        openLightbox(this.src, this.alt);
+        closeLightbox();
+      } else if (e.key === 'Tab' && lightboxCloseBtn) {
+        e.preventDefault();
+        lightboxCloseBtn.focus();
       }
     });
-    img.setAttribute('tabindex', '0');
-    img.setAttribute('role', 'button');
-  });
+  }
 
-  lightbox.addEventListener('click', function (e) {
-    if (e.target === lightbox) {
-      closeLightbox();
-    }
-  });
-
-  document.querySelectorAll('.lightbox-close').forEach(function (btn) {
-    btn.addEventListener('click', closeLightbox);
-  });
-
-  // Minimize/close buttons with tooltips
-  document.querySelectorAll('.retro-btn-minimize').forEach(function (btn) {
-    btn.title = 'Minimize';
-    btn.addEventListener('click', function () {
-      this.closest('.retro-window').classList.toggle('minimized');
+  // ==========================================================
+  // Fenster ein-/ausklappen
+  // ==========================================================
+  function setCollapsed(win, collapsed) {
+    win.classList.toggle('minimized', collapsed);
+    win.querySelectorAll('[aria-expanded]').forEach(function (btn) {
+      btn.setAttribute('aria-expanded', String(!collapsed));
     });
-  });
+  }
+
+  function toggleWindow(win) {
+    if (win) setCollapsed(win, !win.classList.contains('minimized'));
+  }
+
+  document
+    .querySelectorAll('.retro-btn-minimize, .retro-btn-close')
+    .forEach(function (btn) {
+      if (btn.classList.contains('lightbox-close')) return;
+      btn.title = 'Collapse this window';
+      btn.addEventListener('click', function () {
+        toggleWindow(this.closest('.retro-window'));
+      });
+    });
 
   document.querySelectorAll('.retro-btn-maximize').forEach(function (btn) {
     btn.title = 'Maximize (just kidding)';
     btn.addEventListener('click', function () {
       var win = this.closest('.retro-window');
+      if (reduceMotion) return;
       win.style.animation = 'window-nope 0.3s ease';
-      win.addEventListener('animationend', function () {
-        win.style.animation = '';
-      }, { once: true });
+      win.addEventListener(
+        'animationend',
+        function () {
+          win.style.animation = '';
+        },
+        { once: true }
+      );
     });
   });
 
-  document.querySelectorAll('.retro-btn-close').forEach(function (btn) {
-    if (btn.classList.contains('lightbox-close')) return;
-    btn.title = 'Close (minimize, actually)';
-    btn.addEventListener('click', function () {
-      this.closest('.retro-window').classList.toggle('minimized');
-    });
-  });
-
-  // Double-click titlebar to toggle minimize (like real XP)
-  document.querySelectorAll('.retro-titlebar').forEach(function (titlebar) {
+  document.querySelectorAll('main .retro-titlebar').forEach(function (titlebar) {
     titlebar.addEventListener('dblclick', function (e) {
-      // Don't trigger on button clicks
       if (e.target.closest('.retro-titlebar-buttons')) return;
-      this.closest('.retro-window').classList.toggle('minimized');
+      toggleWindow(this.closest('.retro-window'));
     });
-    titlebar.style.cursor = 'default';
   });
 
-  // Clock
-  var clockEl = document.getElementById('taskbar-clock');
+  // ==========================================================
+  // Uhr - einmal pro Minute statt einmal pro Sekunde.
+  // Der blinkende Doppelpunkt laeuft jetzt als CSS-Animation.
+  // ==========================================================
+  var hoursEl = document.getElementById('clock-hours');
+  var minutesEl = document.getElementById('clock-minutes');
+
   function updateClock() {
-    if (clockEl) {
-      var now = new Date();
-      var h = now.getHours().toString().padStart(2, '0');
-      var m = now.getMinutes().toString().padStart(2, '0');
-      clockEl.textContent = h + ':' + m;
-    }
+    if (!hoursEl || !minutesEl) return;
+    var now = new Date();
+    hoursEl.textContent = String(now.getHours()).padStart(2, '0');
+    minutesEl.textContent = String(now.getMinutes()).padStart(2, '0');
+    // Auf die naechste volle Minute takten.
+    setTimeout(updateClock, (60 - now.getSeconds()) * 1000 + 50);
   }
   updateClock();
 
-  // Start menu
+  // ==========================================================
+  // Start-Menue
+  // ==========================================================
   var startBtn = document.getElementById('start-button');
   var startMenu = document.getElementById('start-menu');
+
+  function setStartMenu(open) {
+    if (!startBtn || !startMenu) return;
+    startMenu.classList.toggle('active', open);
+    startBtn.setAttribute('aria-expanded', String(open));
+  }
+
   if (startBtn && startMenu) {
     startBtn.addEventListener('click', function (e) {
       e.stopPropagation();
-      startMenu.classList.toggle('active');
+      setStartMenu(!startMenu.classList.contains('active'));
     });
+
     document.addEventListener('click', function () {
-      startMenu.classList.remove('active');
+      setStartMenu(false);
     });
+
     startMenu.addEventListener('click', function (e) {
       e.stopPropagation();
     });
-    document.querySelectorAll('.retro-start-menu a').forEach(function (link) {
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && startMenu.classList.contains('active')) {
+        setStartMenu(false);
+        startBtn.focus();
+      }
+    });
+
+    startMenu.querySelectorAll('a').forEach(function (link) {
       link.addEventListener('click', function () {
-        startMenu.classList.remove('active');
+        setStartMenu(false);
       });
     });
   }
 
-  // Contact cancel button
+  // ==========================================================
+  // Kontakt-Dialog
+  // ==========================================================
   var cancelBtn = document.getElementById('contact-cancel');
   if (cancelBtn) {
     cancelBtn.addEventListener('click', function () {
       var contactWin = document.getElementById('contact-window');
-      if (contactWin) contactWin.classList.add('minimized');
+      if (contactWin) setCollapsed(contactWin, true);
     });
   }
 
-  // Any in-page link (desktop icon, taskbar, start menu) un-minimizes its window
+  // Interne Links klappen ihr Zielfenster wieder auf.
   document.querySelectorAll('a[href^="#"]').forEach(function (link) {
     link.addEventListener('click', function () {
-      var targetId = this.getAttribute('href').substring(1);
-      var targetWin = document.getElementById(targetId);
+      var targetWin = document.getElementById(
+        this.getAttribute('href').substring(1)
+      );
       if (targetWin && targetWin.classList.contains('minimized')) {
-        targetWin.classList.remove('minimized');
+        setCollapsed(targetWin, false);
       }
     });
   });
 
-  // Taskbar scrollspy - highlight the window currently in view
+  // ==========================================================
+  // Taskbar-Scrollspy
+  // ==========================================================
   var taskbarBtns = document.querySelectorAll('.retro-taskbar-btn');
   if (taskbarBtns.length && 'IntersectionObserver' in window) {
     var btnByWindowId = {};
@@ -258,14 +385,20 @@
 
         var bestId = null;
         Object.keys(visibleRatios).forEach(function (id) {
-          if (visibleRatios[id] > 0 && (bestId === null || visibleRatios[id] > visibleRatios[bestId])) {
+          if (
+            visibleRatios[id] > 0 &&
+            (bestId === null || visibleRatios[id] > visibleRatios[bestId])
+          ) {
             bestId = id;
           }
         });
 
         if (!bestId) return;
         taskbarBtns.forEach(function (btn) {
-          btn.classList.toggle('active', btn === btnByWindowId[bestId]);
+          var active = btn === btnByWindowId[bestId];
+          btn.classList.toggle('active', active);
+          if (active) btn.setAttribute('aria-current', 'true');
+          else btn.removeAttribute('aria-current');
         });
       },
       { threshold: [0, 0.25, 0.5, 0.75, 1] }
@@ -277,70 +410,85 @@
     });
   }
 
-  // Escape to close lightbox
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-      closeLightbox();
-    }
-  });
+  // ==========================================================
+  // Tabs - ARIA-Pattern inkl. Pfeiltasten (WAI-ARIA APG)
+  // ==========================================================
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.retro-tab'));
 
-  // Blinking clock separator
-  var colonVisible = true;
-  setInterval(function () {
-    if (clockEl) {
-      colonVisible = !colonVisible;
-      var now = new Date();
-      var h = now.getHours().toString().padStart(2, '0');
-      var m = now.getMinutes().toString().padStart(2, '0');
-      clockEl.textContent = h + (colonVisible ? ':' : ' ') + m;
-    }
-  }, 1000);
+  function selectTab(tab, setFocus) {
+    var tablist = tab.parentElement;
+    var section = tab.closest('section');
 
-  // Tab system for About section
-  document.querySelectorAll('.retro-tab').forEach(function (tab) {
-    tab.addEventListener('click', function () {
-      var targetId = this.getAttribute('data-tab');
-      // Deactivate all tabs and panels
-      this.parentElement.querySelectorAll('.retro-tab').forEach(function (t) {
-        t.classList.remove('active');
-      });
-      this.closest('section').querySelectorAll('.retro-tab-panel').forEach(function (p) {
-        p.classList.remove('active');
-      });
-      // Activate clicked tab and target panel
-      this.classList.add('active');
-      var panel = document.getElementById(targetId);
-      if (panel) panel.classList.add('active');
+    tablist.querySelectorAll('.retro-tab').forEach(function (t) {
+      t.classList.remove('active');
+      t.setAttribute('aria-selected', 'false');
+      t.setAttribute('tabindex', '-1');
     });
-  });
+    section.querySelectorAll('.retro-tab-panel').forEach(function (panel) {
+      panel.classList.remove('active');
+    });
 
-  // Animate language bars when tab becomes visible
-  var languageBarsAnimated = false;
-  var observer = new MutationObserver(function (mutations) {
-    mutations.forEach(function (mutation) {
-      if (mutation.target.id === 'tab-languages' && mutation.target.classList.contains('active') && !languageBarsAnimated) {
-        languageBarsAnimated = true;
-        var fills = mutation.target.querySelectorAll('.language-fill');
-        fills.forEach(function (fill, i) {
-          var targetWidth = fill.style.width;
-          fill.style.width = '0%';
-          setTimeout(function () {
-            fill.style.width = targetWidth;
-          }, i * 100 + 50);
-        });
+    tab.classList.add('active');
+    tab.setAttribute('aria-selected', 'true');
+    tab.setAttribute('tabindex', '0');
+    if (setFocus) tab.focus();
+
+    var panel = document.getElementById(tab.getAttribute('aria-controls'));
+    if (panel) {
+      panel.classList.add('active');
+      animateLanguageBars(panel);
+    }
+  }
+
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      selectTab(this, false);
+    });
+
+    tab.addEventListener('keydown', function (e) {
+      var group = Array.prototype.slice.call(
+        this.parentElement.querySelectorAll('.retro-tab')
+      );
+      var i = group.indexOf(this);
+      var next = null;
+
+      if (e.key === 'ArrowRight') next = group[(i + 1) % group.length];
+      else if (e.key === 'ArrowLeft') next = group[(i - 1 + group.length) % group.length];
+      else if (e.key === 'Home') next = group[0];
+      else if (e.key === 'End') next = group[group.length - 1];
+
+      if (next) {
+        e.preventDefault();
+        selectTab(next, true);
       }
     });
   });
-  document.querySelectorAll('.retro-tab-panel').forEach(function (panel) {
-    observer.observe(panel, { attributes: true, attributeFilter: ['class'] });
-  });
 
+  // ==========================================================
+  // Sprachbalken - transform statt width
+  // ==========================================================
+  var languageBarsAnimated = false;
 
-  // Console message for curious devs
+  function animateLanguageBars(panel) {
+    if (languageBarsAnimated || panel.id !== 'tab-languages') return;
+    languageBarsAnimated = true;
+
+    var fills = panel.querySelectorAll('.language-fill');
+    if (reduceMotion) return;
+
+    fills.forEach(function (fill, i) {
+      var target = fill.style.getPropertyValue('--fill');
+      fill.style.setProperty('--fill', '0');
+      setTimeout(function () {
+        fill.style.setProperty('--fill', target);
+      }, i * 90 + 50);
+    });
+  }
+
   console.log(
     '%c Welcome to NikolaiOS! %c\n' +
-    'Built with vanilla HTML, CSS & JS.\n' +
-    'github.com/nikolaikl',
+      'Built with vanilla HTML, CSS & JS.\n' +
+      'github.com/nikolaikl',
     'background:#003399;color:#fff;font-size:14px;padding:4px 8px;border-radius:2px;font-weight:bold;',
     'color:#003399;font-size:12px;'
   );
