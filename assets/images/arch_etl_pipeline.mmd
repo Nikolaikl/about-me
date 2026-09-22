@@ -1,13 +1,13 @@
 flowchart LR
-    S3Src[(S3 Source Bucket)]
-    ETLL[ETL Lambda]
-    Transform[Transform DITA to MD]
-    S3Ing[(S3 Ingestion Bucket)]
-    KB[Bedrock Knowledge Base]
-    S3Vec[(S3 Vectors)]
+    S3Src[(S3<br/>Source)]
+    ETLL[ETL<br/>Lambda]
+    Chunk[Chunking<br/>DITA to MD]
+    S3Ing[(S3<br/>Ingestion)]
+    KB[Bedrock<br/>Knowledge Base]
+    S3Vec[(S3<br/>Vectors)]
 
-    S3Src -->|Upload Event| ETLL
-    ETLL -->|Transform DITA to MD| Transform
-    Transform -->|Write Chunks| S3Ing
-    S3Ing -->|Trigger Sync| KB
+    S3Src -->|Upload| ETLL
+    ETLL --> Chunk
+    Chunk -->|Chunks| S3Ing
+    S3Ing -->|Sync| KB
     KB -->|Index| S3Vec
